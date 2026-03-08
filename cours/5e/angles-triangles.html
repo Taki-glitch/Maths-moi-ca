@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Angles et triangles – 5ème</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>📐 Angles et triangles</h1>
+  <p>Niveau : 5ème</p>
+</header>
+
+<nav class="breadcrumb">
+  <a href="../../index.html">Accueil</a> →
+  <a href="../../niveaux/5e.html">5ème</a> →
+  Angles et triangles
+</nav>
+
+<main>
+
+<section class="bloc cours">
+  <div class="definition">
+    Un triangle est un polygone à trois côtés.
+  </div>
+
+  <div class="propriete">
+    La somme des angles d’un triangle est égale à 180°.
+  </div>
+
+  <div class="exemple">
+    Dans un triangle, 70° + 50° + 60° = 180°.
+  </div>
+</section>
+
+<section class="bloc exercices">
+  <h2>✏️ Exercices</h2>
+  <ol>
+    <li>Écrire un exemple lié au chapitre « Angles et triangles ».</li>
+    <li>Résoudre un exercice simple de ce chapitre.</li>
+  </ol>
+
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
+  <div id="correction" class="correction hidden">
+    <ol>
+      <li>Réponse possible : Dans un triangle, 70° + 50° + 60° = 180°.</li>
+      <li>Utiliser la propriété : La somme des angles d’un triangle est égale à 180°.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="bloc qcm">
+  <h2>📝 QCM – Angles et triangles</h2>
+
+  <div class="question">
+    <p>1️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q1" data-correct="true"> 5ème</label><br>
+    <label><input type="radio" name="q1"> 6ème</label>
+  </div>
+
+  <div class="question">
+    <p>2️⃣ La bonne affirmation est :</p>
+    <label><input type="radio" name="q2" data-correct="true"> La somme des angles d’un triangle est égale à 180°.</label><br>
+    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+  </div>
+
+  <button class="btn" onclick="verifierQCM('5e-angles-triangles')">
+    Vérifier mes réponses
+  </button>
+
+  <p id="qcm-result"></p>
+</section>
+
+<section class="bloc flashcards">
+  <h2>🗂 Flashcards – Angles et triangles</h2>
+
+  <div class="flashcard">
+    <p>Définition clé</p>
+    <div class="reponse">Un triangle est un polygone à trois côtés.</div>
+  </div>
+
+  <div class="flashcard">
+    <p>Propriété à retenir</p>
+    <div class="reponse">La somme des angles d’un triangle est égale à 180°.</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 – Maths pour tous</p>
+</footer>
+
+<script src="../../js/progression.js"></script>
+<script src="../../js/qcm-flashcards.js"></script>
+<script>
+function toggleCorrection(){document.getElementById("correction").classList.toggle("hidden");}
+</script>
+
+</body>
+</html>

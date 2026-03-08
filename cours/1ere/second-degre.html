@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Second degré – Première</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🧮 Second degré</h1>
+  <p>Niveau : Première</p>
+</header>
+
+<nav class="breadcrumb">
+  <a href="../../index.html">Accueil</a> →
+  <a href="../../niveaux/1ere.html">Première</a> →
+  Second degré
+</nav>
+
+<main>
+
+<section class="bloc cours">
+  <div class="definition">
+    Une équation du second degré est de la forme ax²+bx+c=0.
+  </div>
+
+  <div class="propriete">
+    Le discriminant Δ = b²−4ac détermine le nombre de solutions.
+  </div>
+
+  <div class="exemple">
+    x²−5x+6=0 a pour solutions 2 et 3.
+  </div>
+</section>
+
+<section class="bloc exercices">
+  <h2>✏️ Exercices</h2>
+  <ol>
+    <li>Écrire un exemple lié au chapitre « Second degré ».</li>
+    <li>Résoudre un exercice simple de ce chapitre.</li>
+  </ol>
+
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
+  <div id="correction" class="correction hidden">
+    <ol>
+      <li>Réponse possible : x²−5x+6=0 a pour solutions 2 et 3.</li>
+      <li>Utiliser la propriété : Le discriminant Δ = b²−4ac détermine le nombre de solutions.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="bloc qcm">
+  <h2>📝 QCM – Second degré</h2>
+
+  <div class="question">
+    <p>1️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q1" data-correct="true"> Première</label><br>
+    <label><input type="radio" name="q1"> 6ème</label>
+  </div>
+
+  <div class="question">
+    <p>2️⃣ La bonne affirmation est :</p>
+    <label><input type="radio" name="q2" data-correct="true"> Le discriminant Δ = b²−4ac détermine le nombre de solutions.</label><br>
+    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+  </div>
+
+  <button class="btn" onclick="verifierQCM('1ere-second-degre')">
+    Vérifier mes réponses
+  </button>
+
+  <p id="qcm-result"></p>
+</section>
+
+<section class="bloc flashcards">
+  <h2>🗂 Flashcards – Second degré</h2>
+
+  <div class="flashcard">
+    <p>Définition clé</p>
+    <div class="reponse">Une équation du second degré est de la forme ax²+bx+c=0.</div>
+  </div>
+
+  <div class="flashcard">
+    <p>Propriété à retenir</p>
+    <div class="reponse">Le discriminant Δ = b²−4ac détermine le nombre de solutions.</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 – Maths pour tous</p>
+</footer>
+
+<script src="../../js/progression.js"></script>
+<script src="../../js/qcm-flashcards.js"></script>
+<script>
+function toggleCorrection(){document.getElementById("correction").classList.toggle("hidden");}
+</script>
+
+</body>
+</html>
