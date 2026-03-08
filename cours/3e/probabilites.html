@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Probabilités – 3ème</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🎲 Probabilités</h1>
+  <p>Niveau : 3ème</p>
+</header>
+
+<nav class="breadcrumb">
+  <a href="../../index.html">Accueil</a> →
+  <a href="../../niveaux/3e.html">3ème</a> →
+  Probabilités
+</nav>
+
+<main>
+
+<section class="bloc cours">
+  <div class="definition">
+    La probabilité d’un événement varie entre 0 et 1.
+  </div>
+
+  <div class="propriete">
+    P(E)=nombre de cas favorables / nombre de cas possibles (équiprobabilité).
+  </div>
+
+  <div class="exemple">
+    Sur un dé équilibré, P(avoir 6)=1/6.
+  </div>
+</section>
+
+<section class="bloc exercices">
+  <h2>✏️ Exercices</h2>
+  <ol>
+    <li>Écrire un exemple lié au chapitre « Probabilités ».</li>
+    <li>Résoudre un exercice simple de ce chapitre.</li>
+  </ol>
+
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
+  <div id="correction" class="correction hidden">
+    <ol>
+      <li>Réponse possible : Sur un dé équilibré, P(avoir 6)=1/6.</li>
+      <li>Utiliser la propriété : P(E)=nombre de cas favorables / nombre de cas possibles (équiprobabilité).</li>
+    </ol>
+  </div>
+</section>
+
+<section class="bloc qcm">
+  <h2>📝 QCM – Probabilités</h2>
+
+  <div class="question">
+    <p>1️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q1" data-correct="true"> 3ème</label><br>
+    <label><input type="radio" name="q1"> 6ème</label>
+  </div>
+
+  <div class="question">
+    <p>2️⃣ La bonne affirmation est :</p>
+    <label><input type="radio" name="q2" data-correct="true"> P(E)=nombre de cas favorables / nombre de cas possibles (équiprobabilité).</label><br>
+    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+  </div>
+
+  <button class="btn" onclick="verifierQCM('3e-probabilites')">
+    Vérifier mes réponses
+  </button>
+
+  <p id="qcm-result"></p>
+</section>
+
+<section class="bloc flashcards">
+  <h2>🗂 Flashcards – Probabilités</h2>
+
+  <div class="flashcard">
+    <p>Définition clé</p>
+    <div class="reponse">La probabilité d’un événement varie entre 0 et 1.</div>
+  </div>
+
+  <div class="flashcard">
+    <p>Propriété à retenir</p>
+    <div class="reponse">P(E)=nombre de cas favorables / nombre de cas possibles (équiprobabilité).</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 – Maths pour tous</p>
+</footer>
+
+<script src="../../js/progression.js"></script>
+<script src="../../js/qcm-flashcards.js"></script>
+<script>
+function toggleCorrection(){document.getElementById("correction").classList.toggle("hidden");}
+</script>
+
+</body>
+</html>

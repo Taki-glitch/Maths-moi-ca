@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Équations – 4ème</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>➕ Équations</h1>
+  <p>Niveau : 4ème</p>
+</header>
+
+<nav class="breadcrumb">
+  <a href="../../index.html">Accueil</a> →
+  <a href="../../niveaux/4e.html">4ème</a> →
+  Équations
+</nav>
+
+<main>
+
+<section class="bloc cours">
+  <div class="definition">
+    Résoudre une équation, c’est trouver la valeur inconnue qui la vérifie.
+  </div>
+
+  <div class="propriete">
+    On effectue la même opération des deux côtés de l’égalité.
+  </div>
+
+  <div class="exemple">
+    x + 5 = 12 donc x = 7.
+  </div>
+</section>
+
+<section class="bloc exercices">
+  <h2>✏️ Exercices</h2>
+  <ol>
+    <li>Écrire un exemple lié au chapitre « Équations ».</li>
+    <li>Résoudre un exercice simple de ce chapitre.</li>
+  </ol>
+
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
+  <div id="correction" class="correction hidden">
+    <ol>
+      <li>Réponse possible : x + 5 = 12 donc x = 7.</li>
+      <li>Utiliser la propriété : On effectue la même opération des deux côtés de l’égalité.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="bloc qcm">
+  <h2>📝 QCM – Équations</h2>
+
+  <div class="question">
+    <p>1️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q1" data-correct="true"> 4ème</label><br>
+    <label><input type="radio" name="q1"> 6ème</label>
+  </div>
+
+  <div class="question">
+    <p>2️⃣ La bonne affirmation est :</p>
+    <label><input type="radio" name="q2" data-correct="true"> On effectue la même opération des deux côtés de l’égalité.</label><br>
+    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+  </div>
+
+  <button class="btn" onclick="verifierQCM('4e-equations')">
+    Vérifier mes réponses
+  </button>
+
+  <p id="qcm-result"></p>
+</section>
+
+<section class="bloc flashcards">
+  <h2>🗂 Flashcards – Équations</h2>
+
+  <div class="flashcard">
+    <p>Définition clé</p>
+    <div class="reponse">Résoudre une équation, c’est trouver la valeur inconnue qui la vérifie.</div>
+  </div>
+
+  <div class="flashcard">
+    <p>Propriété à retenir</p>
+    <div class="reponse">On effectue la même opération des deux côtés de l’égalité.</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 – Maths pour tous</p>
+</footer>
+
+<script src="../../js/progression.js"></script>
+<script src="../../js/qcm-flashcards.js"></script>
+<script>
+function toggleCorrection(){document.getElementById("correction").classList.toggle("hidden");}
+</script>
+
+</body>
+</html>

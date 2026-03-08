@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Symétrie centrale – 5ème</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🪞 Symétrie centrale</h1>
+  <p>Niveau : 5ème</p>
+</header>
+
+<nav class="breadcrumb">
+  <a href="../../index.html">Accueil</a> →
+  <a href="../../niveaux/5e.html">5ème</a> →
+  Symétrie centrale
+</nav>
+
+<main>
+
+<section class="bloc cours">
+  <div class="definition">
+    La symétrie centrale est une transformation autour d’un point appelé centre.
+  </div>
+
+  <div class="propriete">
+    Le centre est le milieu de chaque segment joignant un point et son image.
+  </div>
+
+  <div class="exemple">
+    L’image de A par symétrie de centre O donne A'.
+  </div>
+</section>
+
+<section class="bloc exercices">
+  <h2>✏️ Exercices</h2>
+  <ol>
+    <li>Écrire un exemple lié au chapitre « Symétrie centrale ».</li>
+    <li>Résoudre un exercice simple de ce chapitre.</li>
+  </ol>
+
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
+  <div id="correction" class="correction hidden">
+    <ol>
+      <li>Réponse possible : L’image de A par symétrie de centre O donne A'.</li>
+      <li>Utiliser la propriété : Le centre est le milieu de chaque segment joignant un point et son image.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="bloc qcm">
+  <h2>📝 QCM – Symétrie centrale</h2>
+
+  <div class="question">
+    <p>1️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q1" data-correct="true"> 5ème</label><br>
+    <label><input type="radio" name="q1"> 6ème</label>
+  </div>
+
+  <div class="question">
+    <p>2️⃣ La bonne affirmation est :</p>
+    <label><input type="radio" name="q2" data-correct="true"> Le centre est le milieu de chaque segment joignant un point et son image.</label><br>
+    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+  </div>
+
+  <button class="btn" onclick="verifierQCM('5e-symetrie-centrale')">
+    Vérifier mes réponses
+  </button>
+
+  <p id="qcm-result"></p>
+</section>
+
+<section class="bloc flashcards">
+  <h2>🗂 Flashcards – Symétrie centrale</h2>
+
+  <div class="flashcard">
+    <p>Définition clé</p>
+    <div class="reponse">La symétrie centrale est une transformation autour d’un point appelé centre.</div>
+  </div>
+
+  <div class="flashcard">
+    <p>Propriété à retenir</p>
+    <div class="reponse">Le centre est le milieu de chaque segment joignant un point et son image.</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 – Maths pour tous</p>
+</footer>
+
+<script src="../../js/progression.js"></script>
+<script src="../../js/qcm-flashcards.js"></script>
+<script>
+function toggleCorrection(){document.getElementById("correction").classList.toggle("hidden");}
+</script>
+
+</body>
+</html>
