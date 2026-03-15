@@ -445,6 +445,10 @@ footer {
   font-weight: 600;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 86px;
+  min-height: 40px;
+  line-height: 1;
 }
 
 .niveaux-menu > ul > li > a:hover,
@@ -490,6 +494,7 @@ footer {
 .niveaux-menu .submenu a.current-page {
   font-weight: 800;
   color: var(--primary-dark);
+  background: #e8f1ff;
 }
 
 

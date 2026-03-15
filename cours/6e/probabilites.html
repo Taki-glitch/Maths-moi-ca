@@ -2,71 +2,85 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>6e – Probabilités</title>
-
-  <!-- Styles globaux -->
-  <link rel="stylesheet" href="../css/style.css">
+  <title>Probabilités – 6ème</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
 
 <header>
-  <h1>Probabilités – 6e</h1>
+  <h1>🎲 Probabilités</h1>
   <p>Niveau : 6ème</p>
 </header>
 
 <div id="site-menu" data-root="../../"></div>
 
-
-
-<nav class="breadcrumb">
-  <a href="../../index.html">Accueil</a> →
-  <a href="../../niveaux/6e.html">6ème</a> →
-  Probabilités
-</nav>
-
 <main>
 
-<!-- ================= COURS ================= -->
-<section class="bloc">
+<section class="bloc cours">
   <div class="definition">
     La probabilité d’un événement mesure ses chances de se produire.
     Elle est comprise entre 0 (impossible) et 1 (certain).
   </div>
 
+  <div class="propriete">
+    Plus la probabilité est proche de 1, plus l’événement a de chances de se produire.
+  </div>
+
   <div class="exemple">
-    En lançant un dé à 6 faces :
-    <br>Probabilité d’obtenir 6 = 1 / 6
+    En lançant un dé à 6 faces : P(obtenir 6) = 1/6.
   </div>
 </section>
 
-<!-- ================= QCM ================= -->
-<section class="bloc qcm" data-id="proba-qcm">
-  <h2>QCM - Les probabilités</h2>
+<section class="bloc exercices">
+  <h2>✏️ Exercices</h2>
 
-  <p class="question">La probabilité d’un événement impossible est :</p>
-  <label>
-    <input type="radio" name="q1" data-correct="true"> 0
-  </label><br>
-  <label>
-    <input type="radio" name="q1"> 1
-  </label>
+  <ol>
+    <li>Quelle est la probabilité d’obtenir pile en lançant une pièce équilibrée ?</li>
+    <li>Donner la probabilité d’obtenir un nombre pair avec un dé à 6 faces.</li>
+  </ol>
 
-  <button class="btn check-qcm">Valider</button>
-  <p class="result"></p>
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
+  <div id="correction" class="correction hidden">
+    <ol>
+      <li>1/2.</li>
+      <li>3/6 = 1/2.</li>
+    </ol>
+  </div>
 </section>
 
-<!-- ================= FLASHCARDS ================= -->
-<section class="bloc">
-  <h2>Flashcards - Probabilités</h2>
+<section class="bloc qcm">
+  <h2>📝 QCM – Probabilités</h2>
 
-  <div class="flashcard">
-    <div class="question">Probabilité maximale ?</div>
-    <div class="reponse">1</div>
+  <div class="question">
+    <p>1️⃣ La probabilité d’un événement impossible est :</p>
+    <label><input type="radio" name="q1" data-correct="true"> 0</label><br>
+    <label><input type="radio" name="q1"> 1</label>
   </div>
 
+  <div class="question">
+    <p>2️⃣ Avec un dé, la probabilité d’obtenir un nombre pair est :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 1/2</label><br>
+    <label><input type="radio" name="q2"> 1/3</label>
+  </div>
+
+  <button class="btn" onclick="verifierQCM('6e-probabilites')">Vérifier mes réponses</button>
+  <p id="qcm-result"></p>
+</section>
+
+<section class="bloc flashcards">
+  <h2>🗂 Flashcards – Probabilités</h2>
+
   <div class="flashcard">
-    <div class="question">Probabilité minimale ?</div>
+    <p>Probabilité minimale</p>
     <div class="reponse">0</div>
+  </div>
+
+  <div class="flashcard">
+    <p>Probabilité maximale</p>
+    <div class="reponse">1</div>
   </div>
 </section>
 
@@ -76,15 +90,13 @@
   <p>© 2026 – Maths pour tous</p>
 </footer>
 
-<!-- ================= SCRIPTS GLOBAUX ================= -->
 <script src="../../js/progression.js"></script>
 <script src="../../js/qcm-flashcards.js"></script>
-
 <script>
-/* Correction exercices (simple et générique) */
 function toggleCorrection() {
   document.getElementById("correction").classList.toggle("hidden");
 }
+</script>
 <script src="../../js/site-menu.js"></script>
 </body>
 </html>

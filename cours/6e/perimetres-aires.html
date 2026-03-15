@@ -2,64 +2,102 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>6e – Périmètres et aires</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Périmètres et aires – 6ème</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
 
 <header>
-  <h1>Périmètres et aires – 6e</h1>
+  <h1>📏 Périmètres et aires</h1>
+  <p>Niveau : 6ème</p>
 </header>
 
 <div id="site-menu" data-root="../../"></div>
 
-
-
 <main>
 
-<section class="bloc">
+<section class="bloc cours">
   <div class="definition">
     Le périmètre est la longueur du contour d’une figure.
-    L’aire est la surface occupée par une figure.
+    L’aire est la surface occupée par cette figure.
   </div>
 
   <div class="propriete">
-    Aire du rectangle = longueur × largeur
+    Rectangle : P = 2 × (L + l) et A = L × l.
   </div>
 
   <div class="exemple">
-    Rectangle 5 cm × 3 cm → Aire = 15 cm²
+    Pour un rectangle de 5 cm sur 3 cm :
+    <br>P = 2 × (5 + 3) = 16 cm et A = 5 × 3 = 15 cm².
   </div>
 </section>
 
-<section class="bloc qcm" data-id="aire-qcm">
-  <h2>QCM</h2>
+<section class="bloc exercices">
+  <h2>✏️ Exercices</h2>
 
-  <p class="question">Aire d’un carré de côté 4 cm :</p>
-  <label><input type="radio" name="q1" data-correct="true"> 16 cm²</label><br>
-  <label><input type="radio" name="q1"> 8 cm²</label>
+  <ol>
+    <li>Calculer le périmètre d’un carré de côté 4 cm.</li>
+    <li>Calculer l’aire d’un rectangle de longueur 8 cm et largeur 2 cm.</li>
+  </ol>
 
-  <button class="btn check-qcm">Valider</button>
-  <p class="result"></p>
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
+  <div id="correction" class="correction hidden">
+    <ol>
+      <li>P = 4 × 4 = 16 cm.</li>
+      <li>A = 8 × 2 = 16 cm².</li>
+    </ol>
+  </div>
 </section>
 
-<section class="bloc">
-  <h2>Flashcards</h2>
+<section class="bloc qcm">
+  <h2>📝 QCM – Périmètres et aires</h2>
+
+  <div class="question">
+    <p>1️⃣ L’aire d’un carré de côté 4 cm est :</p>
+    <label><input type="radio" name="q1" data-correct="true"> 16 cm²</label><br>
+    <label><input type="radio" name="q1"> 8 cm²</label>
+  </div>
+
+  <div class="question">
+    <p>2️⃣ Le périmètre d’un rectangle de côtés 3 cm et 7 cm est :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 20 cm</label><br>
+    <label><input type="radio" name="q2"> 21 cm</label>
+  </div>
+
+  <button class="btn" onclick="verifierQCM('6e-perimetres-aires')">Vérifier mes réponses</button>
+  <p id="qcm-result"></p>
+</section>
+
+<section class="bloc flashcards">
+  <h2>🗂 Flashcards – Périmètres et aires</h2>
 
   <div class="flashcard">
-    <div class="question">Formule du périmètre du carré ?</div>
-    <div class="reponse">4 × côté</div>
+    <p>Périmètre d’un carré</p>
+    <div class="reponse">4 × côté.</div>
   </div>
 
   <div class="flashcard">
-    <div class="question">Unité d’aire ?</div>
-    <div class="reponse">cm², m²…</div>
+    <p>Aire d’un rectangle</p>
+    <div class="reponse">longueur × largeur.</div>
   </div>
 </section>
 
 </main>
 
-<script src="../chapitre.js"></script>
+<footer>
+  <p>© 2026 – Maths pour tous</p>
+</footer>
+
+<script src="../../js/progression.js"></script>
+<script src="../../js/qcm-flashcards.js"></script>
+<script>
+function toggleCorrection() {
+  document.getElementById("correction").classList.toggle("hidden");
+}
+</script>
 <script src="../../js/site-menu.js"></script>
 </body>
 </html>
