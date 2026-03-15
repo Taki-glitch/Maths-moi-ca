@@ -434,6 +434,7 @@ footer {
 
 .niveaux-menu li {
   position: relative;
+  padding-bottom: 6px;
 }
 
 .niveaux-menu > ul > li > a {
@@ -456,7 +457,7 @@ footer {
   display: none;
   position: absolute;
   left: 0;
-  top: calc(100% + 8px);
+  top: 100%;
   min-width: 260px;
   z-index: 30;
   background: #ffffff;
@@ -464,6 +465,7 @@ footer {
   border-radius: var(--radius-md);
   box-shadow: 0 16px 30px rgba(30, 58, 95, 0.18);
   padding: 8px;
+  margin-top: 2px;
   flex-direction: column;
 }
 
@@ -484,6 +486,9 @@ footer {
   background: #eef4ff;
 }
 
+
+.niveaux-menu .has-submenu > a:hover + .submenu,
+.niveaux-menu .has-submenu > a:focus-visible + .submenu,
 .niveaux-menu .has-submenu:hover > .submenu,
 .niveaux-menu .has-submenu:focus-within > .submenu {
   display: flex;
@@ -492,6 +497,10 @@ footer {
 @media (max-width: 640px) {
   .niveaux-menu > ul {
     justify-content: flex-start;
+  }
+
+  .niveaux-menu li {
+    padding-bottom: 0;
   }
 
   .niveaux-menu .submenu {
