@@ -2,60 +2,101 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>6e – Proportionnalité</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Proportionnalité – 6ème</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
 
 <header>
-  <h1>Proportionnalité – 6e</h1>
+  <h1>📊 Proportionnalité</h1>
+  <p>Niveau : 6ème</p>
 </header>
 
 <div id="site-menu" data-root="../../"></div>
 
-
-
 <main>
 
-<section class="bloc">
+<section class="bloc cours">
   <div class="definition">
-    Deux grandeurs sont proportionnelles si on peut passer de l’une à l’autre
+    Deux grandeurs sont proportionnelles si on passe de l’une à l’autre
     en multipliant toujours par le même nombre.
   </div>
 
+  <div class="propriete">
+    Dans un tableau de proportionnalité, le coefficient multiplicateur reste constant.
+  </div>
+
   <div class="exemple">
-    1 stylo coûte 2 € → 3 stylos coûtent 6 €
+    Si 1 cahier coûte 2 €, alors 4 cahiers coûtent 8 €.
   </div>
 </section>
 
-<section class="bloc qcm" data-id="proportion-qcm">
-  <h2>QCM</h2>
+<section class="bloc exercices">
+  <h2>✏️ Exercices</h2>
 
-  <p class="question">Si 2 kg coûtent 6 €, combien coûtent 5 kg ?</p>
-  <label><input type="radio" name="q1" data-correct="true"> 15 €</label><br>
-  <label><input type="radio" name="q1"> 12 €</label>
+  <ol>
+    <li>Compléter : 3 kg de pommes coûtent 9 €, donc 5 kg coûtent …</li>
+    <li>Dire si c’est proportionnel : 2 stylos → 6 €, 5 stylos → 15 €.</li>
+  </ol>
 
-  <button class="btn check-qcm">Valider</button>
-  <p class="result"></p>
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
+  <div id="correction" class="correction hidden">
+    <ol>
+      <li>15 €.</li>
+      <li>Oui, car le prix est multiplié par le même coefficient (3).</li>
+    </ol>
+  </div>
 </section>
 
-<section class="bloc">
-  <h2>Flashcards</h2>
+<section class="bloc qcm">
+  <h2>📝 QCM – Proportionnalité</h2>
+
+  <div class="question">
+    <p>1️⃣ Si 2 kg coûtent 6 €, 5 kg coûtent :</p>
+    <label><input type="radio" name="q1" data-correct="true"> 15 €</label><br>
+    <label><input type="radio" name="q1"> 12 €</label>
+  </div>
+
+  <div class="question">
+    <p>2️⃣ Dans une situation proportionnelle, le coefficient est :</p>
+    <label><input type="radio" name="q2" data-correct="true"> constant</label><br>
+    <label><input type="radio" name="q2"> variable</label>
+  </div>
+
+  <button class="btn" onclick="verifierQCM('6e-proportionnalite')">Vérifier mes réponses</button>
+  <p id="qcm-result"></p>
+</section>
+
+<section class="bloc flashcards">
+  <h2>🗂 Flashcards – Proportionnalité</h2>
 
   <div class="flashcard">
-    <div class="question">Outil graphique pour la proportionnalité ?</div>
-    <div class="reponse">Tableau de proportionnalité</div>
+    <p>Outil principal</p>
+    <div class="reponse">Le tableau de proportionnalité.</div>
   </div>
 
   <div class="flashcard">
-    <div class="question">Le graphique est une droite passant par…</div>
-    <div class="reponse">l’origine</div>
+    <p>Graphique d’une situation proportionnelle</p>
+    <div class="reponse">Une droite passant par l’origine.</div>
   </div>
 </section>
 
 </main>
 
-<script src="../chapitre.js"></script>
+<footer>
+  <p>© 2026 – Maths pour tous</p>
+</footer>
+
+<script src="../../js/progression.js"></script>
+<script src="../../js/qcm-flashcards.js"></script>
+<script>
+function toggleCorrection() {
+  document.getElementById("correction").classList.toggle("hidden");
+}
+</script>
 <script src="../../js/site-menu.js"></script>
 </body>
 </html>

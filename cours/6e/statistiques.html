@@ -2,60 +2,100 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>6e – Statistiques</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Statistiques – 6ème</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
 
 <header>
-  <h1>Statistiques – 6e</h1>
+  <h1>📈 Statistiques</h1>
+  <p>Niveau : 6ème</p>
 </header>
 
 <div id="site-menu" data-root="../../"></div>
 
-
-
 <main>
 
-<section class="bloc">
+<section class="bloc cours">
   <div class="definition">
-    Les statistiques permettent d’étudier des données à l’aide de tableaux
-    et de graphiques.
+    Les statistiques permettent de recueillir, organiser et interpréter des données.
   </div>
 
   <div class="propriete">
-    La moyenne = somme des valeurs ÷ nombre de valeurs
+    La moyenne se calcule en faisant : somme des valeurs ÷ nombre de valeurs.
+  </div>
+
+  <div class="exemple">
+    Pour 10, 12 et 8 : moyenne = (10 + 12 + 8) / 3 = 10.
   </div>
 </section>
 
-<section class="bloc qcm" data-id="stats-qcm">
-  <h2>QCM</h2>
+<section class="bloc exercices">
+  <h2>✏️ Exercices</h2>
 
-  <p class="question">Moyenne de 10, 12, 8 :</p>
-  <label><input type="radio" name="q1" data-correct="true"> 10</label><br>
-  <label><input type="radio" name="q1"> 9</label>
+  <ol>
+    <li>Calculer la moyenne de 6, 9 et 12.</li>
+    <li>Quelle est la valeur la plus fréquente dans : 4, 5, 5, 7, 7, 7, 9 ?</li>
+  </ol>
 
-  <button class="btn check-qcm">Valider</button>
-  <p class="result"></p>
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
+  <div id="correction" class="correction hidden">
+    <ol>
+      <li>(6 + 9 + 12) / 3 = 9.</li>
+      <li>7 (c’est le mode).</li>
+    </ol>
+  </div>
 </section>
 
-<section class="bloc">
-  <h2>Flashcards</h2>
+<section class="bloc qcm">
+  <h2>📝 QCM – Statistiques</h2>
+
+  <div class="question">
+    <p>1️⃣ La moyenne de 10, 12, 8 est :</p>
+    <label><input type="radio" name="q1" data-correct="true"> 10</label><br>
+    <label><input type="radio" name="q1"> 9</label>
+  </div>
+
+  <div class="question">
+    <p>2️⃣ La valeur la plus fréquente d’une série s’appelle :</p>
+    <label><input type="radio" name="q2" data-correct="true"> le mode</label><br>
+    <label><input type="radio" name="q2"> la médiane</label>
+  </div>
+
+  <button class="btn" onclick="verifierQCM('6e-statistiques')">Vérifier mes réponses</button>
+  <p id="qcm-result"></p>
+</section>
+
+<section class="bloc flashcards">
+  <h2>🗂 Flashcards – Statistiques</h2>
 
   <div class="flashcard">
-    <div class="question">Valeur la plus fréquente ?</div>
-    <div class="reponse">Mode</div>
+    <p>Moyenne</p>
+    <div class="reponse">Somme des valeurs divisée par le nombre de valeurs.</div>
   </div>
 
   <div class="flashcard">
-    <div class="question">Valeur centrale ?</div>
-    <div class="reponse">Médiane</div>
+    <p>Mode</p>
+    <div class="reponse">Valeur la plus fréquente.</div>
   </div>
 </section>
 
 </main>
 
-<script src="../chapitre.js"></script>
+<footer>
+  <p>© 2026 – Maths pour tous</p>
+</footer>
+
+<script src="../../js/progression.js"></script>
+<script src="../../js/qcm-flashcards.js"></script>
+<script>
+function toggleCorrection() {
+  document.getElementById("correction").classList.toggle("hidden");
+}
+</script>
 <script src="../../js/site-menu.js"></script>
 </body>
 </html>
