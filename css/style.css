@@ -487,6 +487,12 @@ footer {
 }
 
 
+.niveaux-menu .submenu a.current-page {
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+
 .niveaux-menu .has-submenu > a:hover + .submenu,
 .niveaux-menu .has-submenu > a:focus-visible + .submenu,
 .niveaux-menu .has-submenu:hover > .submenu,
