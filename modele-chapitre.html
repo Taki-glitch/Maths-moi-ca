@@ -29,6 +29,10 @@
   </nav>
 </header>
 
+<div id="site-menu" data-root="../../"></div>
+
+
+
 <main>
 
 <!-- ===== Cours ===== -->
@@ -84,6 +88,21 @@
 
 </main>
 
+<!-- Optionnel : personnaliser le cours sans modifier le JS global -->
+<script id="course-config" type="application/json">
+{
+  "definition": "",
+  "programme": "",
+  "pointsClefs": ["", "", ""],
+  "methods": ["", "", ""],
+  "traps": ["", ""],
+  "exercices": ["", "", ""],
+  "corrige": ["", "", ""],
+  "qcm": [],
+  "flashcards": []
+}
+</script>
+
 <footer>
   <p>© 2026 – Maths pour tous</p>
 </footer>
@@ -105,5 +124,6 @@
   }
 </script>
 
+<script src="../../js/site-menu.js"></script>
 </body>
 </html>
