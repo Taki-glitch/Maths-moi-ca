@@ -447,7 +447,8 @@ footer {
   align-items: center;
   justify-content: center;
   min-width: 86px;
-  line-height: 1.2;
+  min-height: 40px;
+  line-height: 1;
 }
 
 .niveaux-menu > ul > li > a:hover,
