@@ -2,107 +2,57 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Dérivation – Première</title>
+  <title>Maths pour tous</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
 <header>
-  <h1>📉 Dérivation</h1>
-  <p>Niveau : Première</p>
+  <h1>📚 Maths pour tous</h1>
+  <p>Un apprentissage clair, progressif et motivant du collège au lycée.</p>
 </header>
 
-<div id="site-menu" data-root="../../"></div>
+<div id="site-menu" data-root=""></div>
 
-<nav class="breadcrumb">
-  <a href="../../index.html">Accueil</a> →
-  <a href="../../niveaux/1ere.html">Première</a> →
-  Dérivation
-</nav>
+
+
 
 <main>
+  <section class="hero">
+    <h2>✨ Réviser efficacement, chapitre par chapitre</h2>
+    <p>
+      Accède rapidement aux cours, exercices corrigés, QCM et flashcards.
+      Le contenu est pensé pour te faire progresser avec méthode.
+    </p>
+    <div class="quick-actions">
+      <a class="button-link" href="niveaux/6e.html">Commencer en 6ème</a>
+      <a class="button-link" href="cours/6e/fractions.html">Voir un cours exemple</a>
+    </div>
+  </section>
 
-<section class="bloc cours">
-  <div class="definition">
-    La dérivée mesure le taux de variation instantané d’une fonction.
-  </div>
+  <section class="derniers-articles">
+    <h2>📰 Derniers articles publiés</h2>
+    <ul class="link-list">
+      <li><a href="cours/6e/fractions.html">Fractions – 6ème</a></li>
+      <!-- ajouter ici d'autres articles -->
+    </ul>
+  </section>
 
-  <div class="propriete">
-    Le signe de f'(x) donne les variations de f.
-  </div>
-
-  <div class="exemple">
-    Si f'(x)>0 sur I, alors f est croissante sur I.
-  </div>
-</section>
-
-<section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
-  <ol>
-    <li>Écrire un exemple lié au chapitre « Dérivation ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
-  </ol>
-
-  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
-
-  <div id="correction" class="correction hidden">
-    <ol>
-      <li>Réponse possible : Si f'(x)>0 sur I, alors f est croissante sur I.</li>
-      <li>Utiliser la propriété : Le signe de f'(x) donne les variations de f.</li>
-    </ol>
-  </div>
-</section>
-
-<section class="bloc qcm">
-  <h2>📝 QCM – Dérivation</h2>
-
-  <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> Première</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
-  </div>
-
-  <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> Le signe de f'(x) donne les variations de f.</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
-  </div>
-
-  <button class="btn" onclick="verifierQCM('1ere-derivee')">
-    Vérifier mes réponses
-  </button>
-
-  <p id="qcm-result"></p>
-</section>
-
-<section class="bloc flashcards">
-  <h2>🗂 Flashcards – Dérivation</h2>
-
-  <div class="flashcard">
-    <p>Définition clé</p>
-    <div class="reponse">La dérivée mesure le taux de variation instantané d’une fonction.</div>
-  </div>
-
-  <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">Le signe de f'(x) donne les variations de f.</div>
-  </div>
-</section>
-
+  <section class="outils">
+    <h2>🧰 Outils de révision</h2>
+    <ul class="link-list">
+      <li><a href="outils/qcm.html">QCM</a></li>
+      <li><a href="outils/flashcards.html">Flashcards</a></li>
+    </ul>
+  </section>
 </main>
 
 <footer>
   <p>© 2026 – Maths pour tous</p>
 </footer>
 
-<script src="../../js/progression.js"></script>
-<script src="../../js/qcm-flashcards.js"></script>
-<script>
-function toggleCorrection(){document.getElementById("correction").classList.toggle("hidden");}
-</script>
-
-<script src="../../js/site-menu.js"></script>
+<script src="js/main.js"></script>
+<script src="js/site-menu.js"></script>
 </body>
 </html>
