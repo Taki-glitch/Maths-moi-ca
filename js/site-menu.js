@@ -9,7 +9,7 @@
     ["terminale", "Terminale", [["limites.html", "Limites de fonctions"], ["continuite.html", "Continuité"], ["integrales.html", "Intégrales"], ["suites.html", "Suites et récurrence"], ["logarithme-exponentielle.html", "Logarithme et exponentielle"], ["probabilites-continues.html", "Probabilités continues"], ["loi-normale.html", "Loi normale"]]],
   ];
 
-  const currentPath = window.location.pathname;
+  const currentPath = window.location.pathname.replace(/\/+$/, '');
   const isCours = currentPath.includes('/cours/');
   const holder = document.getElementById('site-menu');
   if (!holder) return;
@@ -41,7 +41,7 @@
       ca.href = `${rootPrefix}cours/${slug}/${fileName}`;
       ca.textContent = title;
 
-      if (isCours && currentPath.includes(`/cours/${slug}/${fileName}`)) {
+      if (isCours && currentPath.endsWith(`/cours/${slug}/${fileName}`)) {
         ca.classList.add('current-page');
       }
 
