@@ -143,14 +143,14 @@ function defaultCourseData() {
 
 function loadCourseConfig() {
   const configTag = document.getElementById("course-config");
-  if (!configTag) return defaultCourseData();
+  if (!configTag) return null;
 
   try {
     const parsed = JSON.parse(configTag.textContent);
     return { ...defaultCourseData(), ...parsed };
   } catch (error) {
     console.warn("Configuration de cours invalide (#course-config).", error);
-    return defaultCourseData();
+    return null;
   }
 }
 
@@ -244,7 +244,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!window.location.pathname.includes("/cours/")) return;
 
   const data = loadCourseConfig();
-  renderCourse(data);
+  if (data) {
+    renderCourse(data);
+  }
 
   document.querySelectorAll(".flashcard").forEach((card) => {
     card.addEventListener("click", () => {
