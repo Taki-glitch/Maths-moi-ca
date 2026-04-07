@@ -19,36 +19,63 @@
 <main>
 
 <section class="bloc cours">
+
+  <h2>📘 Cours</h2>
   <div class="definition">
-    La probabilité d’un événement mesure ses chances de se produire.
-    Elle est comprise entre 0 (impossible) et 1 (certain).
+    Une <strong>probabilité</strong> mesure la chance qu’un événement se produise. Elle est comprise entre 0 et 1.
   </div>
 
   <div class="propriete">
-    Plus la probabilité est proche de 1, plus l’événement a de chances de se produire.
+    <ul>
+      <li>0 : événement impossible ;</li>
+      <li>1 : événement certain ;</li>
+      <li>entre 0 et 1 : événement possible.</li>
+    </ul>
+  </div>
+
+  <div class="propriete">
+    Dans une situation d’équiprobabilité :
+    probabilité = (nombre de cas favorables) / (nombre de cas possibles).
   </div>
 
   <div class="exemple">
-    En lançant un dé à 6 faces : $P(\text{obtenir 6}) = \dfrac{1}{6}$.
+    Dé équilibré : P(obtenir 6) = 1/6. P(obtenir un nombre pair) = 3/6 = 1/2.
   </div>
+
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+
+  <h2>✏️ Exercices d'entraînement</h2>
 
   <ol>
-    <li>Quelle est la probabilité d’obtenir pile en lançant une pièce équilibrée ?</li>
-    <li>Donner la probabilité d’obtenir un nombre pair avec un dé à 6 faces.</li>
+    <li>Dans un lancer de dé, quelle est la probabilité d’obtenir 3 ?</li>
+    <li>Dans un lancer de dé, quelle est la probabilité d’obtenir un nombre supérieur à 4 ?</li>
+    <li>Une roue contient 8 secteurs égaux : 3 rouges, 5 bleus. Donne P(rouge) et P(bleu).</li>
+    <li>Un sac contient 2 billes vertes, 4 jaunes, 4 noires. Probabilité de tirer une bille jaune ?</li>
+    <li>Classe ces événements : impossible / certain / possible :
+      <ul>
+        <li>Tirer 7 avec un dé à 6 faces.</li>
+        <li>Obtenir une lettre de l’alphabet en tirant au hasard parmi A, B, C.</li>
+        <li>Obtenir pile ou face en lançant une pièce.</li>
+      </ul>
+    </li>
+    <li>Transforme en fraction simplifiée : 4/12 ; 6/10.</li>
   </ol>
 
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
 
   <div id="correction" class="correction hidden">
     <ol>
-      <li>$\dfrac{1}{2}$.</li>
-      <li>$\dfrac{3}{6}=\dfrac{1}{2}$.</li>
+      <li>1/6.</li>
+      <li>Nombres &gt; 4 : 5 ou 6, donc 2/6 = 1/3.</li>
+      <li>P(rouge)=3/8 ; P(bleu)=5/8.</li>
+      <li>Total 10 billes, jaunes 4 : 4/10 = 2/5.</li>
+      <li>Impossible ; certain ; possible (et même 1).</li>
+      <li>4/12 = 1/3 ; 6/10 = 3/5.</li>
     </ol>
   </div>
+
 </section>
 
 <section class="bloc qcm">

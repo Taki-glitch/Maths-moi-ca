@@ -19,35 +19,57 @@
 <main>
 
 <section class="bloc cours">
+
+  <h2>📘 Cours</h2>
   <div class="definition">
-    Les statistiques permettent de recueillir, organiser et interpréter des données.
+    En statistiques, on collecte des données, on les organise (tableau, diagramme), puis on les interprète.
   </div>
 
   <div class="propriete">
-    La moyenne se calcule en faisant : somme des valeurs ÷ nombre de valeurs.
+    Vocabulaire :
+    <ul>
+      <li><strong>Effectif</strong> : nombre d’occurrences d’une valeur ;</li>
+      <li><strong>Total</strong> : somme des effectifs ;</li>
+      <li><strong>Fréquence</strong> : effectif / total.</li>
+    </ul>
+  </div>
+
+  <div class="propriete">
+    La <strong>moyenne</strong> se calcule par : somme des valeurs / nombre de valeurs.
   </div>
 
   <div class="exemple">
-    Pour 10, 12 et 8 : $\text{moyenne}=\dfrac{10+12+8}{3}=10$.
+    Notes : 8 ; 12 ; 10 ; 10. Moyenne = (8+12+10+10)/4 = 10.
   </div>
+
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+
+  <h2>✏️ Exercices d'entraînement</h2>
 
   <ol>
-    <li>Calculer la moyenne de 6, 9 et 12.</li>
-    <li>Quelle est la valeur la plus fréquente dans : 4, 5, 5, 7, 7, 7, 9 ?</li>
+    <li>Dans une classe, couleurs préférées : Rouge 6, Bleu 10, Vert 4. Quel est l’effectif total ?</li>
+    <li>Calcule la fréquence du bleu dans l’exercice 1.</li>
+    <li>Notes obtenues : 9 ; 11 ; 15 ; 5 ; 10. Calcule la moyenne.</li>
+    <li>Tailles (en cm) : 140 ; 142 ; 142 ; 145 ; 148 ; 142. Donne l’effectif de 142.</li>
+    <li>Vrai/Faux : « La fréquence est toujours entre 0 et 1 » ; « L’effectif peut être négatif ».</li>
+    <li>Une série contient 12 valeurs. Une modalité a une fréquence 1/4. Quel est son effectif ?</li>
   </ol>
 
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
 
   <div id="correction" class="correction hidden">
     <ol>
-      <li>$\dfrac{6+9+12}{3}=9$.</li>
-      <li>7 (c’est le mode).</li>
+      <li>Total = 6 + 10 + 4 = <strong>20</strong>.</li>
+      <li>Fréquence du bleu = 10/20 = <strong>0,5</strong> (soit 50 %).</li>
+      <li>Moyenne = (9 + 11 + 15 + 5 + 10) / 5 = 50/5 = <strong>10</strong>.</li>
+      <li>L’effectif de 142 est <strong>3</strong>.</li>
+      <li>Vrai ; Faux.</li>
+      <li>Effectif = 12 × 1/4 = <strong>3</strong>.</li>
     </ol>
   </div>
+
 </section>
 
 <section class="bloc qcm">
