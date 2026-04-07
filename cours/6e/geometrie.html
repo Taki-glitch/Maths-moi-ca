@@ -22,32 +22,55 @@
 <main>
 
 <section class="bloc cours">
+
+  <h2>📘 Cours</h2>
   <div class="definition">
-    La géométrie étudie les formes, les figures et les positions dans l’espace.
+    En géométrie, on utilise des objets fondamentaux : <strong>point</strong>, <strong>droite</strong>, <strong>segment</strong>, <strong>demi-droite</strong>.
   </div>
 
   <div class="propriete">
-    Un segment est une portion de droite limitée par deux points.
+    <ul>
+      <li>Un segment [AB] a deux extrémités A et B.</li>
+      <li>Une droite (AB) est illimitée des deux côtés.</li>
+      <li>Une demi-droite [AB) part de A et passe par B.</li>
+    </ul>
+  </div>
+
+  <div class="propriete">
+    On trace avec précision : règle, équerre et compas. Le codage (traits, arcs) aide à lire une figure.
   </div>
 
   <div class="exemple">
-    Un triangle possède 3 côtés et 3 angles.
+    Si AB = 5 cm et BC = 3 cm, alors AC = 8 cm si A, B, C sont alignés avec B entre A et C.
   </div>
+
 </section>
 
 <section class="bloc exercices">
+
+  <h2>✏️ Exercices d'entraînement</h2>
   <ol>
-    <li>Tracer un segment de 5 cm.</li>
-    <li>Nommer les sommets d’un triangle.</li>
+    <li>Trace un segment [AB] de 6 cm puis place son milieu M.</li>
+    <li>Trace la droite (d) passant par P et Q puis une demi-droite [PR).</li>
+    <li>Complète : [CD] est ... ; (CD) est ... ; [CD) est ...</li>
+    <li>Sur une même droite, place A, B, C avec AB = 2 cm et BC = 5 cm. Calcule AC.</li>
+    <li>Construis un triangle ABC tel que AB = 4 cm, AC = 5 cm, BC = 6 cm.</li>
+    <li>Vrai/Faux : « Un segment est illimité » ; « Une droite a une longueur mesurable » ; « Un point n’a pas de dimension ».</li>
   </ol>
 
-  <button class="btn" onclick="toggleCorrection()">Corrigé</button>
+  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
+
   <div id="correction" class="correction hidden">
     <ol>
-      <li>Segment tracé à la règle.</li>
-      <li>Par exemple A, B et C.</li>
+      <li>M est le point du segment tel que AM = MB = 3 cm.</li>
+      <li>Vérifier que les notations sont correctes : (d), [PR).</li>
+      <li>[CD] : segment ; (CD) : droite ; [CD) : demi-droite d’origine C.</li>
+      <li>AC = AB + BC = 2 + 5 = 7 cm (si B est entre A et C).</li>
+      <li>Construction au compas : cercle centre A rayon 5 cm et cercle centre B rayon 6 cm ; intersection = C.</li>
+      <li>Faux ; Faux ; Vrai.</li>
     </ol>
   </div>
+
 </section>
 
 <section class="bloc qcm">
