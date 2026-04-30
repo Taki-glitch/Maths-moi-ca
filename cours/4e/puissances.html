@@ -22,70 +22,52 @@
 <main>
 
 <section class="bloc cours">
-  <div class="definition">
-    Une puissance est un produit de facteurs égaux.
-  </div>
-
-  <div class="propriete">
-    $a^m \times a^n = a^{m+n}$.
-  </div>
-
-  <div class="exemple">
-    $10^3 = 1000$.
-  </div>
+  <h2>📘 Cours</h2>
+  <div class="definition">Une puissance est une écriture abrégée d’un produit de facteurs égaux : a^n = a×a×...×a (n fois).</div>
+  <div class="propriete">a^m × a^n = a^(m+n).</div>
+  <div class="propriete">a^m / a^n = a^(m-n) (si a ≠ 0).</div>
+  <div class="exemple">Exemple : 2^5 = 32 et 10^3 = 1000.</div>
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+  <h2>✏️ Exercices d'entraînement</h2>
   <ol>
-    <li>Écrire un exemple lié au chapitre « Puissances ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
+    <li>Écrire sous forme de puissance : 7×7×7×7.</li>
+    <li>Calculer : A = 2^4 × 2^3.</li>
+    <li>Calculer : B = 10^6 / 10^2.</li>
+    <li>Écrire en notation scientifique : 4 500 000.</li>
   </ol>
-
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
-
   <div id="correction" class="correction hidden">
     <ol>
-      <li>Réponse possible : $10^3 = 1000$.</li>
-      <li>Utiliser la propriété : $a^m \times a^n = a^{m+n}$.</li>
+    <li>7^4.</li>
+    <li>A = 2^(4+3)=2^7=128.</li>
+    <li>B = 10^(6-2)=10^4=10 000.</li>
+    <li>4,5 × 10^6.</li>
     </ol>
   </div>
 </section>
 
 <section class="bloc qcm">
   <h2>📝 QCM – Puissances</h2>
-
   <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 4ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
+    <p>1️⃣ Quelle affirmation est correcte ?</p>
+    <label><input type="radio" name="q1" data-correct="true"> a^m × a^n = a^(m+n).</label><br>
+    <label><input type="radio" name="q1"> Toutes les réponses sont fausses.</label>
   </div>
-
   <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> $a^m \times a^n = a^{m+n}$.</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+    <p>2️⃣ Ce chapitre est au niveau :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 4ème</label><br>
+    <label><input type="radio" name="q2"> 5ème</label>
   </div>
-
-  <button class="btn" onclick="verifierQCM('4e-puissances')">
-    Vérifier mes réponses
-  </button>
-
+  <button class="btn" onclick="verifierQCM('4e-puissances')">Vérifier mes réponses</button>
   <p id="qcm-result"></p>
 </section>
 
 <section class="bloc flashcards">
   <h2>🗂 Flashcards – Puissances</h2>
-
-  <div class="flashcard">
-    <p>Définition clé</p>
-    <div class="reponse">Une puissance est un produit de facteurs égaux.</div>
-  </div>
-
-  <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">$a^m \times a^n = a^{m+n}$.</div>
-  </div>
+  <div class="flashcard"><p>Définition clé</p><div class="reponse">Une puissance est une écriture abrégée d’un produit de facteurs égaux : a^n = a×a×...×a (n fois).</div></div>
+  <div class="flashcard"><p>Méthode clé</p><div class="reponse">a^m / a^n = a^(m-n) (si a ≠ 0).</div></div>
 </section>
 
 </main>
