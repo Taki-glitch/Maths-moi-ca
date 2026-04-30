@@ -243,6 +243,7 @@ function verifierQCM() {
 
   awardPoints(score * 10, "QCM terminé");
   if (score === total && total > 0) validateChapter(chapterKey(), result);
+  saveExerciseHistory(score, total);
 }
 
 function toggleCorrection() {
@@ -292,6 +293,14 @@ function validateChapter(id, resultNode) {
   setGlobalScore(data);
   renderScoreBoard();
   if (resultNode) resultNode.textContent += " + bonus validation : 20 pts";
+}
+
+function getLearningProfile() {
+  return JSON.parse(localStorage.getItem("mathsMoiCaProfile") || '{"niveau":"","lastChapter":"","history":[]}');
+}
+
+function setLearningProfile(profile) {
+  localStorage.setItem("mathsMoiCaProfile", JSON.stringify(profile));
 }
 
 
@@ -539,6 +548,103 @@ function initFunctionVisualizer() {
   draw();
 }
 
+function buildGuidedPath(chapter) {
+  return [
+    `1) Lire l'objectif du chapitre ${chapter}.`,
+    "2) Faire 1 exercice facile puis 1 moyen.",
+    "3) Utiliser les indices seulement si besoin.",
+    "4) Valider le QCM à 100% pour clôturer le chapitre.",
+  ];
+}
+
+function updateResumeInfo() {
+  const profile = getLearningProfile();
+  const resumeText = document.getElementById("resume-text");
+  if (!resumeText) return;
+  resumeText.textContent = profile.lastChapter
+    ? `Dernier chapitre travaillé : ${profile.lastChapter}.`
+    : "Aucun historique de reprise pour le moment.";
+}
+
+function updateRecommendation() {
+  const profile = getLearningProfile();
+  const rec = document.getElementById("recommendation-text");
+  if (!rec) return;
+  const validated = getGlobalScore().validated.length;
+  if (validated < 2) rec.textContent = "Recommandation : commence par 1 exercice facile puis valide le QCM.";
+  else if (validated < 5) rec.textContent = "Recommandation : alterne moyen et difficile pour progresser.";
+  else rec.textContent = "Excellent rythme : vise un nouveau chapitre validé aujourd'hui.";
+  if (profile.niveau) rec.textContent += ` Niveau actuel : ${profile.niveau}.`;
+}
+
+function renderExerciseHistory() {
+  const list = document.getElementById("history-list");
+  if (!list) return;
+  const profile = getLearningProfile();
+  const items = profile.history.slice(-8).reverse();
+  list.innerHTML = items.length
+    ? items.map((it) => `<li>${it.date} — ${it.chapter} — score ${it.score}/${it.total}</li>`).join("")
+    : "<li>Pas encore d'exercice enregistré.</li>";
+}
+
+function saveExerciseHistory(score, total) {
+  const profile = getLearningProfile();
+  profile.lastChapter = chapterKey();
+  profile.history.push({
+    chapter: sanitizeTitle(document.querySelector("header h1")?.textContent || "Chapitre"),
+    score,
+    total,
+    date: new Date().toISOString().slice(0, 10),
+  });
+  if (profile.history.length > 40) profile.history = profile.history.slice(-40);
+  setLearningProfile(profile);
+  updateResumeInfo();
+  renderExerciseHistory();
+}
+
+function renderPersonalizationPanel() {
+  const main = document.querySelector("main");
+  if (!main || document.querySelector(".personalization-panel")) return;
+  const profile = getLearningProfile();
+  const chapter = sanitizeTitle(document.querySelector("header h1")?.textContent || "Chapitre");
+  const panel = document.createElement("section");
+  panel.className = "bloc personalization-panel";
+  panel.innerHTML = `
+    <h2>🧭 Personnalisation</h2>
+    <label for="level-select">Choix du niveau :</label>
+    <select id="level-select">
+      <option value="">-- Sélectionner --</option>
+      <option value="6ème">6ème</option><option value="5ème">5ème</option><option value="4ème">4ème</option>
+      <option value="3ème">3ème</option><option value="2nde">2nde</option><option value="1ère">1ère</option><option value="Terminale">Terminale</option>
+    </select>
+    <div class="guided-path"><h3>Parcours guidé</h3><ol>${buildGuidedPath(chapter).map((step) => `<li>${step}</li>`).join("")}</ol></div>
+    <div class="resume-box"><p id="resume-text"></p><button type="button" class="btn" id="resume-btn">Reprise automatique</button></div>
+    <div class="recommendation-box"><h3>Recommandation simple</h3><p id="recommendation-text"></p></div>
+    <div class="history-box"><h3>Historique des exercices</h3><ul id="history-list"></ul></div>
+  `;
+  main.insertBefore(panel, main.firstChild);
+
+  const select = panel.querySelector("#level-select");
+  if (select) {
+    select.value = profile.niveau || getLevel();
+    select.addEventListener("change", () => {
+      const next = getLearningProfile();
+      next.niveau = select.value;
+      setLearningProfile(next);
+      updateRecommendation();
+    });
+  }
+
+  panel.querySelector("#resume-btn")?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.querySelector(".step-chip")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  updateResumeInfo();
+  updateRecommendation();
+  renderExerciseHistory();
+}
+
 /* ===== Initialisation ===== */
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.location.pathname.includes("/cours/")) return;
@@ -555,6 +661,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProgressiveHints();
   renderFinalQuiz();
   renderVisualLab();
+  renderPersonalizationPanel();
 
   document.querySelectorAll(".flashcard").forEach((card) => {
     card.addEventListener("click", () => {

@@ -733,6 +733,26 @@ footer {
   border-radius: 10px;
 }
 
+.personalization-panel select {
+  margin-top: 8px;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #c9d8f6;
+  font: inherit;
+}
+
+.guided-path,
+.resume-box,
+.recommendation-box,
+.history-box {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #dde9ff;
+  background: #f8fbff;
+}
+
 @media (max-width: 640px) {
   section, .bloc { padding: 14px; }
   .chapter-nav .btn { width: 100%; }
