@@ -689,6 +689,50 @@ footer {
   padding-top: 14px;
 }
 
+.visual-lab canvas {
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid #d9e6ff;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.function-controls {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.function-controls label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.function-controls input[type="range"] {
+  width: 100%;
+}
+
+.variation-box {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #eef6ff;
+  border: 1px solid #d6e6ff;
+}
+
+.geogebra-box {
+  margin-top: 12px;
+}
+
+.geogebra-box iframe {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 420px;
+  border: 1px solid #d9e6ff;
+  border-radius: 10px;
+}
+
 @media (max-width: 640px) {
   section, .bloc { padding: 14px; }
   .chapter-nav .btn { width: 100%; }

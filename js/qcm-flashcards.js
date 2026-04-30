@@ -424,6 +424,121 @@ function renderFinalQuiz() {
   });
 }
 
+function renderVisualLab() {
+  const cours = document.querySelector("section.cours, section.bloc.cours");
+  if (!cours || document.querySelector(".visual-lab")) return;
+
+  const visual = document.createElement("section");
+  visual.className = "bloc visual-lab";
+  visual.innerHTML = `
+    <h2>📊 Visualisation interactive</h2>
+    <p>Manipule les paramètres pour visualiser la fonction au lieu de mémoriser.</p>
+    <div class="function-controls">
+      <label for="coef-a">a :
+        <input id="coef-a" type="range" min="-5" max="5" step="1" value="1">
+      </label>
+      <label for="coef-b">b :
+        <input id="coef-b" type="range" min="-10" max="10" step="1" value="0">
+      </label>
+      <p id="function-equation"><strong>f(x) = 1x + 0</strong></p>
+    </div>
+    <canvas id="function-canvas" width="560" height="320" aria-label="Graphique de fonction affine"></canvas>
+    <div class="variation-box">
+      <h3>📈 Tableau de variation dynamique</h3>
+      <p id="variation-text">Fonction croissante sur ℝ (a > 0).</p>
+    </div>
+    <details class="geogebra-box">
+      <summary>Ouvrir l'activité GeoGebra</summary>
+      <iframe
+        title="GeoGebra - visualisation de fonction"
+        src="https://www.geogebra.org/classic?lang=fr"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        allowfullscreen
+      ></iframe>
+    </details>
+  `;
+
+  cours.insertAdjacentElement("afterend", visual);
+  initFunctionVisualizer();
+}
+
+function initFunctionVisualizer() {
+  const canvas = document.getElementById("function-canvas");
+  const inputA = document.getElementById("coef-a");
+  const inputB = document.getElementById("coef-b");
+  if (!canvas || !inputA || !inputB) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const equation = document.getElementById("function-equation");
+  const variation = document.getElementById("variation-text");
+
+  const draw = () => {
+    const a = Number(inputA.value);
+    const b = Number(inputB.value);
+    const width = canvas.width;
+    const height = canvas.height;
+    const unit = 24;
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.strokeStyle = "#dce6f7";
+    ctx.lineWidth = 1;
+    for (let x = 0; x <= width; x += unit) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+    for (let y = 0; y <= height; y += unit) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+
+    const ox = width / 2;
+    const oy = height / 2;
+    ctx.strokeStyle = "#526a87";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(0, oy);
+    ctx.lineTo(width, oy);
+    ctx.moveTo(ox, 0);
+    ctx.lineTo(ox, height);
+    ctx.stroke();
+
+    ctx.strokeStyle = "#1e6bd6";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for (let px = 0; px <= width; px += 2) {
+      const x = (px - ox) / unit;
+      const y = a * x + b;
+      const py = oy - y * unit;
+      if (px === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    if (equation) equation.innerHTML = `<strong>f(x) = ${a}x ${b >= 0 ? "+" : "-"} ${Math.abs(b)}</strong>`;
+    if (variation) {
+      variation.textContent = a > 0
+        ? "Fonction croissante sur ℝ (a > 0)."
+        : a < 0
+          ? "Fonction décroissante sur ℝ (a < 0)."
+          : "Fonction constante sur ℝ (a = 0).";
+    }
+  };
+
+  inputA.addEventListener("input", draw);
+  inputB.addEventListener("input", draw);
+  draw();
+}
+
 /* ===== Initialisation ===== */
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.location.pathname.includes("/cours/")) return;
@@ -439,6 +554,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderDifficultyExercises();
   renderProgressiveHints();
   renderFinalQuiz();
+  renderVisualLab();
 
   document.querySelectorAll(".flashcard").forEach((card) => {
     card.addEventListener("click", () => {
