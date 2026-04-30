@@ -239,6 +239,76 @@ function toggleCorrection() {
   if (correction) correction.classList.toggle("hidden");
 }
 
+
+function injectRoadmapUX() {
+  const main = document.querySelector("main");
+  if (!main) return;
+
+  const coursSection = document.querySelector("section.cours, section.bloc.cours");
+  if (coursSection && !document.querySelector(".chapter-objectives")) {
+    const title = sanitizeTitle(document.querySelector("header h1")?.textContent || "ce chapitre");
+    const objective = document.createElement("section");
+    objective.className = "bloc chapter-objectives";
+    objective.innerHTML = `
+      <h2>🎯 Objectifs du chapitre</h2>
+      <ul>
+        <li>Découvrir les notions essentielles de « ${title} ».</li>
+        <li>Comprendre les méthodes et éviter les erreurs fréquentes.</li>
+        <li>S'entraîner avec des exercices courts et un QCM interactif.</li>
+        <li>Valider les acquis avec correction immédiate.</li>
+      </ul>`;
+    main.insertBefore(objective, coursSection);
+  }
+
+  const steps = [
+    ["section.cours, section.bloc.cours", "🔎 Étape 1 — Découvrir & comprendre"],
+    ["section.exercices, section.bloc.exercices", "✍️ Étape 2 — S’entraîner"],
+    ["section.qcm, section.bloc.qcm", "✅ Étape 3 — Valider"],
+  ];
+
+  steps.forEach(([selector, text]) => {
+    const section = document.querySelector(selector);
+    if (!section || section.querySelector(".step-chip")) return;
+    const chip = document.createElement("p");
+    chip.className = "step-chip";
+    chip.textContent = text;
+    section.insertBefore(chip, section.firstChild);
+  });
+
+  const current = document.querySelector('.niveaux-menu .submenu a.current-page');
+  if (current && !document.querySelector('.chapter-nav')) {
+    const links = [...current.closest('.submenu').querySelectorAll('a')];
+    const i = links.indexOf(current);
+    const prev = links[i - 1];
+    const next = links[i + 1];
+
+    const nav = document.createElement('nav');
+    nav.className = 'chapter-nav';
+    nav.setAttribute('aria-label', 'Navigation entre chapitres');
+    nav.innerHTML = `${prev ? `<a class="btn" href="${prev.getAttribute('href')}">← Chapitre précédent</a>` : '<span></span>'}${next ? `<a class="btn" href="${next.getAttribute('href')}">Chapitre suivant →</a>` : '<span></span>'}`;
+    main.appendChild(nav);
+  }
+}
+
+function enableInstantQcmFeedback() {
+  document.querySelectorAll('.qcm .question, .bloc.qcm .question').forEach((question) => {
+    if (question.querySelector('.qcm-feedback')) return;
+    const feedback = document.createElement('p');
+    feedback.className = 'qcm-feedback';
+    feedback.setAttribute('aria-live', 'polite');
+    question.appendChild(feedback);
+
+    question.querySelectorAll('input[type="radio"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        const ok = input.dataset.correct === 'true';
+        question.classList.remove('is-good', 'is-bad');
+        question.classList.add(ok ? 'is-good' : 'is-bad');
+        feedback.textContent = ok ? '✅ Bonne réponse !' : '❌ Mauvaise réponse, essaie encore.';
+      });
+    });
+  });
+}
+
 /* ===== Initialisation ===== */
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.location.pathname.includes("/cours/")) return;
@@ -247,6 +317,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (data) {
     renderCourse(data);
   }
+
+  injectRoadmapUX();
+  enableInstantQcmFeedback();
 
   document.querySelectorAll(".flashcard").forEach((card) => {
     card.addEventListener("click", () => {
