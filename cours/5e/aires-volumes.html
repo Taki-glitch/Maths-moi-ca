@@ -21,72 +21,24 @@
 
 <main>
 
-<section class="bloc cours">
-  <div class="definition">
-    L’aire mesure une surface et le volume mesure l’espace occupé.
-  </div>
 
-  <div class="propriete">
-    Aire du rectangle : $A=\text{longueur}\times\text{largeur}$ ; volume du pavé droit : $V=L\times l\times h$.
-  </div>
-
-  <div class="exemple">
-    Rectangle $8\times 3$ : $A=24\,\text{u}^2$.
-  </div>
-</section>
-
-<section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
-  <ol>
-    <li>Écrire un exemple lié au chapitre « Aires et volumes ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
-  </ol>
-
-  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
-
-  <div id="correction" class="correction hidden">
-    <ol>
-      <li>Réponse possible : Rectangle $8\times 3$ : $A=24\,\text{u}^2$.</li>
-      <li>Utiliser la propriété : Aire du rectangle : $A=\text{longueur}\times\text{largeur}$ ; volume du pavé droit : $V=L\times l\times h$.</li>
-    </ol>
-  </div>
-</section>
-
-<section class="bloc qcm">
-  <h2>📝 QCM – Aires et volumes</h2>
-
-  <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 5ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
-  </div>
-
-  <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> Aire du rectangle : $A=\text{longueur}\times\text{largeur}$ ; volume du pavé droit : $V=L\times l\times h$.</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
-  </div>
-
-  <button class="btn" onclick="verifierQCM('5e-aires-volumes')">
-    Vérifier mes réponses
-  </button>
-
-  <p id="qcm-result"></p>
-</section>
-
-<section class="bloc flashcards">
-  <h2>🗂 Flashcards – Aires et volumes</h2>
-
-  <div class="flashcard">
-    <p>Définition clé</p>
-    <div class="reponse">L’aire mesure une surface et le volume mesure l’espace occupé.</div>
-  </div>
-
-  <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">Aire du rectangle : $A=\text{longueur}\times\text{largeur}$ ; volume du pavé droit : $V=L\times l\times h$.</div>
-  </div>
-</section>
+<section class="bloc cours"><h2>📘 Cours</h2>
+<div class="definition">L’aire mesure une surface (en cm², m²...) ; le volume mesure l’espace occupé (en cm³, m³...).</div>
+<div class="propriete">Rectangle : A = L × l ; triangle : A = (base × hauteur)/2.</div>
+<div class="propriete">Pavé droit : V = L × l × h.</div>
+<div class="propriete">Conversions : 1 dm³ = 1 L ; 1 cm³ = 1 mL.</div>
+<div class="exemple">Pavé 8×5×3 cm : V = 120 cm³.</div></section>
+<section class="bloc exercices"><h2>✏️ Exercices d’entraînement</h2><ol>
+<li>Calculer l’aire d’un rectangle de 12 cm sur 7 cm.</li>
+<li>Calculer l’aire d’un triangle de base 10 cm et hauteur 6 cm.</li>
+<li>Calculer le volume d’un pavé droit de dimensions 9 cm, 4 cm et 5 cm.</li>
+<li>Convertir : 2,5 dm³ en litres puis 750 cm³ en mL.</li>
+</ol><button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button><div id="correction" class="correction hidden"><ol>
+<li>A = 12 × 7 = 84 cm².</li>
+<li>A = (10 × 6)/2 = 30 cm².</li>
+<li>V = 9 × 4 × 5 = 180 cm³.</li>
+<li>2,5 dm³ = 2,5 L ; 750 cm³ = 750 mL.</li>
+</ol></div></section>
 
 </main>
 
