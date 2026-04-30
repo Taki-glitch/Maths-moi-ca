@@ -753,6 +753,35 @@ footer {
   background: #f8fbff;
 }
 
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.tool-card {
+  border: 1px solid #dce7fb;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fbfdff;
+}
+
+.tool-card input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid #c9d8f6;
+}
+
+#geo-canvas {
+  width: 100%;
+  max-width: 280px;
+  border: 1px solid #d9e6ff;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
 @media (max-width: 640px) {
   section, .bloc { padding: 14px; }
   .chapter-nav .btn { width: 100%; }

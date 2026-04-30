@@ -645,6 +645,130 @@ function renderPersonalizationPanel() {
   renderExerciseHistory();
 }
 
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function buildRandomExercise() {
+  const a = randomInt(-9, 9);
+  const b = randomInt(-9, 9);
+  const op = ["+", "-", "×"][randomInt(0, 2)];
+  const result = op === "+" ? a + b : op === "-" ? a - b : a * b;
+  return { statement: `Calculer : ${a} ${op} ${b}`, answer: result };
+}
+
+function renderPowerTools() {
+  const main = document.querySelector("main");
+  if (!main || document.querySelector(".power-tools")) return;
+  const section = document.createElement("section");
+  section.className = "bloc power-tools";
+  section.innerHTML = `
+    <h2>🛠 Outils puissants</h2>
+    <div class="tool-grid">
+      <article class="tool-card">
+        <h3>🎲 Générateur d'exercices aléatoires</h3>
+        <p id="random-exo">Clique pour générer un exercice.</p>
+        <input id="random-answer" type="number" placeholder="Ta réponse">
+        <button class="btn" type="button" id="new-exo-btn">Nouvel exercice</button>
+        <button class="btn" type="button" id="check-exo-btn">Vérifier</button>
+        <p id="random-feedback"></p>
+      </article>
+      <article class="tool-card">
+        <h3>∞ Mode entraînement illimité</h3>
+        <p>Enchaîne les exercices : chaque bonne réponse lance le suivant.</p>
+        <button class="btn" type="button" id="unlimited-toggle">Démarrer</button>
+        <p id="unlimited-status">Inactif</p>
+      </article>
+      <article class="tool-card">
+        <h3>🧮 Calculatrice / traceur</h3>
+        <input id="calc-input" type="text" placeholder="Ex: 2*(3+4)">
+        <button class="btn" type="button" id="calc-btn">Calculer</button>
+        <p id="calc-result"></p>
+      </article>
+      <article class="tool-card">
+        <h3>📐 Outil de géométrie simple</h3>
+        <canvas id="geo-canvas" width="280" height="220" aria-label="Schéma géométrique interactif"></canvas>
+        <button class="btn" type="button" id="geo-btn">Nouveau triangle</button>
+      </article>
+      <article class="tool-card">
+        <h3>📝 Générateur de sujets</h3>
+        <button class="btn" type="button" id="topic-btn">Générer un sujet</button>
+        <ul id="topic-list"></ul>
+      </article>
+    </div>
+  `;
+  main.appendChild(section);
+  initPowerTools();
+}
+
+function initPowerTools() {
+  let currentExercise = buildRandomExercise();
+  let unlimited = false;
+  const exo = document.getElementById("random-exo");
+  const answer = document.getElementById("random-answer");
+  const feedback = document.getElementById("random-feedback");
+  const status = document.getElementById("unlimited-status");
+
+  const refreshExercise = () => {
+    currentExercise = buildRandomExercise();
+    if (exo) exo.textContent = currentExercise.statement;
+    if (answer) answer.value = "";
+    if (feedback) feedback.textContent = "";
+  };
+
+  document.getElementById("new-exo-btn")?.addEventListener("click", refreshExercise);
+  document.getElementById("check-exo-btn")?.addEventListener("click", () => {
+    const value = Number(answer?.value);
+    const ok = value === currentExercise.answer;
+    if (feedback) feedback.textContent = ok ? "✅ Correct !" : `❌ Faux. Réponse: ${currentExercise.answer}`;
+    if (ok && unlimited) refreshExercise();
+  });
+  refreshExercise();
+
+  document.getElementById("unlimited-toggle")?.addEventListener("click", (e) => {
+    unlimited = !unlimited;
+    e.target.textContent = unlimited ? "Arrêter" : "Démarrer";
+    if (status) status.textContent = unlimited ? "Actif : prochain exo auto après réussite." : "Inactif";
+  });
+
+  document.getElementById("calc-btn")?.addEventListener("click", () => {
+    const input = document.getElementById("calc-input");
+    const out = document.getElementById("calc-result");
+    if (!input || !out) return;
+    try {
+      const value = Function(`"use strict"; return (${input.value})`)();
+      out.textContent = `Résultat : ${value}`;
+    } catch {
+      out.textContent = "Expression invalide.";
+    }
+  });
+
+  const geo = document.getElementById("geo-canvas");
+  const gctx = geo?.getContext("2d");
+  const drawTriangle = () => {
+    if (!geo || !gctx) return;
+    const p1 = [randomInt(20, 80), randomInt(20, 180)];
+    const p2 = [randomInt(120, 250), randomInt(20, 100)];
+    const p3 = [randomInt(100, 260), randomInt(120, 200)];
+    gctx.clearRect(0, 0, geo.width, geo.height);
+    gctx.fillStyle = "#fff";
+    gctx.fillRect(0, 0, geo.width, geo.height);
+    gctx.strokeStyle = "#1e6bd6";
+    gctx.lineWidth = 2;
+    gctx.beginPath();
+    gctx.moveTo(...p1); gctx.lineTo(...p2); gctx.lineTo(...p3); gctx.closePath(); gctx.stroke();
+  };
+  document.getElementById("geo-btn")?.addEventListener("click", drawTriangle);
+  drawTriangle();
+
+  document.getElementById("topic-btn")?.addEventListener("click", () => {
+    const topics = ["Sujet 1: QCM + exercices faciles", "Sujet 2: Problème de synthèse", "Sujet 3: Révision chronométrée 20 min"];
+    const list = document.getElementById("topic-list");
+    if (!list) return;
+    list.innerHTML = topics.map((t) => `<li>${t}</li>`).join("");
+  });
+}
+
 /* ===== Initialisation ===== */
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.location.pathname.includes("/cours/")) return;
@@ -662,6 +786,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderFinalQuiz();
   renderVisualLab();
   renderPersonalizationPanel();
+  renderPowerTools();
 
   document.querySelectorAll(".flashcard").forEach((card) => {
     card.addEventListener("click", () => {
