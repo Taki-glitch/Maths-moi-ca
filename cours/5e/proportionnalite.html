@@ -21,55 +21,42 @@
 
 <main>
 
-<section class="bloc cours">
-  <div class="definition">
-    Deux grandeurs sont proportionnelles si on passe de l’une à l’autre en multipliant par un même nombre.
-  </div>
 
-  <div class="propriete">
-    Dans un tableau de proportionnalité, les quotients correspondants sont égaux.
-  </div>
+<section class="bloc cours"><h2>📘 Cours</h2>
+<div class="definition">Deux grandeurs sont proportionnelles si on passe de l’une à l’autre en multipliant toujours par le même nombre (coefficient).</div>
+<div class="propriete">Dans un tableau de proportionnalité, les quotients correspondants sont égaux.</div>
+<div class="propriete">Passage à l’unité : on calcule d’abord pour 1, puis on multiplie.</div>
+<div class="propriete">Pourcentage : $p\%=\dfrac{p}{100}$ d’une quantité.</div>
+<div class="exemple">3 kg coûtent 7,50 € donc 1 kg coûte 2,50 € ; 8 kg coûtent 20 €.</div></section>
+<section class="bloc exercices"><h2>✏️ Exercices d’entraînement</h2><ol>
+<li>Compléter : 4 cahiers coûtent 9,60 €. Combien coûtent 7 cahiers ?</li>
+<li>10 L d’essence permettent 140 km. Quelle distance pour 25 L ?</li>
+<li>Calculer 15% de 80 puis 30% de 250.</li>
+<li>Dire si c’est proportionnel : (2 ; 6), (5 ; 15), (9 ; 28).</li>
+</ol><button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button><div id="correction" class="correction hidden"><ol>
+<li>1 cahier = 2,40 €, donc 7 cahiers = 16,80 €.</li>
+<li>1 L = 14 km, donc 25 L = 350 km.</li>
+<li>15% de 80 = 12 ; 30% de 250 = 75.</li>
+<li>Non proportionnel car 28/9 ≠ 3.</li>
+</ol></div></section>
 
-  <div class="exemple">
-    Si 2 kg coûtent 6 €, alors 5 kg coûtent 15 €.
-  </div>
-</section>
-
-<section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
-  <ol>
-    <li>Écrire un exemple lié au chapitre « Proportionnalité ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
-  </ol>
-
-  <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
-
-  <div id="correction" class="correction hidden">
-    <ol>
-      <li>Réponse possible : Si 2 kg coûtent 6 €, alors 5 kg coûtent 15 €.</li>
-      <li>Utiliser la propriété : Dans un tableau de proportionnalité, les quotients correspondants sont égaux.</li>
-    </ol>
-  </div>
-</section>
 
 <section class="bloc qcm">
   <h2>📝 QCM – Proportionnalité</h2>
 
   <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 5ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
+    <p>1️⃣ Quelle affirmation est correcte ?</p>
+    <label><input type="radio" name="q1" data-correct="true"> Deux grandeurs sont proportionnelles si on multiplie toujours par le même nombre.</label><br>
+    <label><input type="radio" name="q1"> Toutes les réponses sont fausses.</label>
   </div>
 
   <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> Dans un tableau de proportionnalité, les quotients correspondants sont égaux.</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+    <p>2️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 5ème</label><br>
+    <label><input type="radio" name="q2"> 4ème</label>
   </div>
 
-  <button class="btn" onclick="verifierQCM('5e-proportionnalite')">
-    Vérifier mes réponses
-  </button>
+  <button class="btn" onclick="verifierQCM('5e-proportionnalite')">Vérifier mes réponses</button>
 
   <p id="qcm-result"></p>
 </section>
@@ -79,12 +66,12 @@
 
   <div class="flashcard">
     <p>Définition clé</p>
-    <div class="reponse">Deux grandeurs sont proportionnelles si on passe de l’une à l’autre en multipliant par un même nombre.</div>
+    <div class="reponse">Deux grandeurs sont proportionnelles si on multiplie toujours par le même nombre.</div>
   </div>
 
   <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">Dans un tableau de proportionnalité, les quotients correspondants sont égaux.</div>
+    <p>À retenir</p>
+    <div class="reponse">Le passage à l’unité est une méthode efficace pour résoudre les problèmes.</div>
   </div>
 </section>
 

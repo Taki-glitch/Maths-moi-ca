@@ -22,32 +22,30 @@
 <main>
 
 <section class="bloc cours">
-  <div class="definition">
-    La probabilité d’un événement varie entre 0 et 1.
-  </div>
-
-  <div class="propriete">
-    $$P(E)=\frac{\text{nombre de cas favorables}}{\text{nombre de cas possibles}}$$ (équiprobabilité).
-  </div>
-
-  <div class="exemple">
-    Sur un dé équilibré, $P(avoir 6)=$\dfrac{1}{6}$$.
-  </div>
+  <h2>📘 Cours</h2>
+  <div class="definition"> La probabilité d’un événement est un nombre compris entre 0 et 1.</div>
+  <div class="propriete"> En équiprobabilité : $P(E)=\dfrac{\text{cas favorables}}{\text{cas possibles}}$.</div>
+  <div class="propriete"> Événement certain : probabilité 1 ; impossible : probabilité 0.</div>
+  <div class="exemple"> Exemple : dé équilibré, $P(\text{obtenir un multiple de 3})=\dfrac{2}{6}=\dfrac{1}{3}$.</div>
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+  <h2>✏️ Exercices d'entraînement</h2>
   <ol>
-    <li>Écrire un exemple lié au chapitre « Probabilités ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
+    <li>On lance un dé : probabilité d’obtenir un nombre pair ?</li>
+    <li>Dans une urne, 3 billes rouges et 7 bleues. Probabilité d’obtenir rouge ?</li>
+    <li>Une pièce équilibrée est lancée 1 fois. Probabilité de pile ?</li>
+    <li>Sur une roue de 12 cases égales, 5 vertes. Probabilité de vert ?</li>
   </ol>
 
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
 
   <div id="correction" class="correction hidden">
     <ol>
-      <li>Réponse possible : Sur un dé équilibré, $P(avoir 6)=$\dfrac{1}{6}$$.</li>
-      <li>Utiliser la propriété : $P(E)=\dfrac{\text{nombre de cas favorables}}{\text{nombre de cas possibles}}$ (équiprobabilité).</li>
+    <li>$\dfrac{3}{6}=\dfrac{1}{2}$.</li>
+    <li>$\dfrac{3}{10}$.</li>
+    <li>$\dfrac{1}{2}$.</li>
+    <li>$\dfrac{5}{12}$.</li>
     </ol>
   </div>
 </section>
@@ -56,20 +54,18 @@
   <h2>📝 QCM – Probabilités</h2>
 
   <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 3ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
+    <p>1️⃣ Quelle affirmation est correcte ?</p>
+    <label><input type="radio" name="q1" data-correct="true">En équiprobabilité : $P(E)=\dfrac{\text{cas favorables}}{\text{cas possibles}}$.</label><br>
+    <label><input type="radio" name="q1"> Toutes les réponses sont fausses.</label>
   </div>
 
   <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> $P(E)=\dfrac{\text{nombre de cas favorables}}{\text{nombre de cas possibles}}$ (équiprobabilité).</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+    <p>2️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 3ème</label><br>
+    <label><input type="radio" name="q2"> 4ème</label>
   </div>
 
-  <button class="btn" onclick="verifierQCM('3e-probabilites')">
-    Vérifier mes réponses
-  </button>
+  <button class="btn" onclick="verifierQCM('3e-probabilites')">Vérifier mes réponses</button>
 
   <p id="qcm-result"></p>
 </section>
@@ -79,12 +75,12 @@
 
   <div class="flashcard">
     <p>Définition clé</p>
-    <div class="reponse">La probabilité d’un événement varie entre 0 et 1.</div>
+    <div class="reponse"> La probabilité d’un événement est un nombre compris entre 0 et 1.</div>
   </div>
 
   <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">$P(E)=\dfrac{\text{nombre de cas favorables}}{\text{nombre de cas possibles}}$ (équiprobabilité).</div>
+    <p>Méthode à retenir</p>
+    <div class="reponse"> Événement certain : probabilité 1 ; impossible : probabilité 0.</div>
   </div>
 </section>
 

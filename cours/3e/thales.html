@@ -22,32 +22,30 @@
 <main>
 
 <section class="bloc cours">
-  <div class="definition">
-    Le théorème de Thalès relie des longueurs dans des triangles avec des droites parallèles.
-  </div>
-
-  <div class="propriete">
-    Si $(DE)\parallel(BC)$, alors $\dfrac{AD}{AB}=\dfrac{AE}{AC}=\dfrac{DE}{BC}$.
-  </div>
-
-  <div class="exemple">
-    On calcule une longueur inconnue avec un produit en croix.
-  </div>
+  <h2>📘 Cours</h2>
+  <div class="definition"> Le théorème de Thalès relie des longueurs dans des triangles avec des droites parallèles.</div>
+  <div class="propriete"> Si $(DE) \parallel (BC)$, alors $\dfrac{AD}{AB}=\dfrac{AE}{AC}=\dfrac{DE}{BC}$.</div>
+  <div class="propriete"> On utilise les égalités de rapports pour calculer une longueur inconnue.</div>
+  <div class="exemple"> Exemple : $AD=4$, $AB=10$, $AC=15$ donc $AE=\dfrac{4\times15}{10}=6$.</div>
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+  <h2>✏️ Exercices d'entraînement</h2>
   <ol>
-    <li>Écrire un exemple lié au chapitre « Théorème de Thalès ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
+    <li>Dans un triangle ABC, D∈[AB], E∈[AC], DE // BC. Avec AD=3, AB=9, AC=12, calculer AE.</li>
+    <li>Toujours avec DE // BC, AD=5, AB=8, BC=14. Calculer DE.</li>
+    <li>Rédiger la proportion de Thalès pour AD=2, AB=7, AE=3, AC=?, DE // BC.</li>
+    <li>Vrai ou faux : si AD/AB = AE/AC alors (DE) // (BC) (dans la configuration adaptée).</li>
   </ol>
 
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
 
   <div id="correction" class="correction hidden">
     <ol>
-      <li>Réponse possible : On calcule une longueur inconnue avec un produit en croix.</li>
-      <li>Utiliser la propriété : Si $(DE)\parallel(BC)$, alors $\dfrac{AD}{AB}=\dfrac{AE}{AC}=\dfrac{DE}{BC}$.</li>
+    <li>$AE=\dfrac{3\times12}{9}=4$.</li>
+    <li>$DE=\left(\dfrac{5}{8}\right)\times14=8{,}75$.</li>
+    <li>$\dfrac{2}{7}=\dfrac{3}{AC}$ donc $AC=\dfrac{7\times3}{2}=10{,}5$.</li>
+    <li>Vrai : c’est la réciproque de Thalès (avec points alignés dans le bon ordre).</li>
     </ol>
   </div>
 </section>
@@ -56,20 +54,18 @@
   <h2>📝 QCM – Théorème de Thalès</h2>
 
   <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 3ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
+    <p>1️⃣ Quelle affirmation est correcte ?</p>
+    <label><input type="radio" name="q1" data-correct="true">Si $(DE) \parallel (BC)$, alors $\dfrac{AD}{AB}=\dfrac{AE}{AC}=\dfrac{DE}{BC}$.</label><br>
+    <label><input type="radio" name="q1"> Toutes les réponses sont fausses.</label>
   </div>
 
   <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> Si $(DE)\parallel(BC)$, alors $\dfrac{AD}{AB}=\dfrac{AE}{AC}=\dfrac{DE}{BC}$.</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+    <p>2️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 3ème</label><br>
+    <label><input type="radio" name="q2"> 4ème</label>
   </div>
 
-  <button class="btn" onclick="verifierQCM('3e-thales')">
-    Vérifier mes réponses
-  </button>
+  <button class="btn" onclick="verifierQCM('3e-thales')">Vérifier mes réponses</button>
 
   <p id="qcm-result"></p>
 </section>
@@ -79,12 +75,12 @@
 
   <div class="flashcard">
     <p>Définition clé</p>
-    <div class="reponse">Le théorème de Thalès relie des longueurs dans des triangles avec des droites parallèles.</div>
+    <div class="reponse"> Le théorème de Thalès relie des longueurs dans des triangles avec des droites parallèles.</div>
   </div>
 
   <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">Si $(DE)\parallel(BC)$, alors $\dfrac{AD}{AB}=\dfrac{AE}{AC}=\dfrac{DE}{BC}$.</div>
+    <p>Méthode à retenir</p>
+    <div class="reponse"> On utilise les égalités de rapports pour calculer une longueur inconnue.</div>
   </div>
 </section>
 

@@ -22,70 +22,52 @@
 <main>
 
 <section class="bloc cours">
-  <div class="definition">
-    La translation déplace une figure sans la tourner ; la rotation tourne la figure autour d’un centre.
-  </div>
-
-  <div class="propriete">
-    Une transformation conserve les longueurs et les angles.
-  </div>
-
-  <div class="exemple">
-    Une rotation de 90° conserve la taille du triangle.
-  </div>
+  <h2>📘 Cours</h2>
+  <div class="definition">Une translation déplace une figure selon une direction, un sens et une longueur.</div>
+  <div class="propriete">Une rotation transforme une figure autour d’un centre selon un angle et un sens.</div>
+  <div class="propriete">Ces transformations conservent longueurs, angles, alignements et aires.</div>
+  <div class="exemple">Exemple : une rotation de 90° du triangle ABC autour de O donne A', B', C'.</div>
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+  <h2>✏️ Exercices d'entraînement</h2>
   <ol>
-    <li>Écrire un exemple lié au chapitre « Translations et rotations ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
+    <li>Nommer les 3 informations nécessaires pour définir une translation.</li>
+    <li>Nommer les 3 informations nécessaires pour définir une rotation.</li>
+    <li>Que deviennent les longueurs après une translation ?</li>
+    <li>Une figure effectue une rotation de 180° : quelle transformation équivalente en 5e connais-tu ?</li>
   </ol>
-
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
-
   <div id="correction" class="correction hidden">
     <ol>
-      <li>Réponse possible : Une rotation de 90° conserve la taille du triangle.</li>
-      <li>Utiliser la propriété : Une transformation conserve les longueurs et les angles.</li>
+    <li>Direction, sens, longueur (ou vecteur).</li>
+    <li>Centre, angle, sens de rotation (horaire/anti-horaire).</li>
+    <li>Elles sont conservées (mêmes longueurs).</li>
+    <li>C’est équivalent à une symétrie centrale de même centre.</li>
     </ol>
   </div>
 </section>
 
 <section class="bloc qcm">
   <h2>📝 QCM – Translations et rotations</h2>
-
   <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 4ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
+    <p>1️⃣ Quelle affirmation est correcte ?</p>
+    <label><input type="radio" name="q1" data-correct="true"> Une rotation transforme une figure autour d’un centre selon un angle et un sens.</label><br>
+    <label><input type="radio" name="q1"> Toutes les réponses sont fausses.</label>
   </div>
-
   <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> Une transformation conserve les longueurs et les angles.</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+    <p>2️⃣ Ce chapitre est au niveau :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 4ème</label><br>
+    <label><input type="radio" name="q2"> 5ème</label>
   </div>
-
-  <button class="btn" onclick="verifierQCM('4e-translations-rotations')">
-    Vérifier mes réponses
-  </button>
-
+  <button class="btn" onclick="verifierQCM('4e-translations-rotations')">Vérifier mes réponses</button>
   <p id="qcm-result"></p>
 </section>
 
 <section class="bloc flashcards">
   <h2>🗂 Flashcards – Translations et rotations</h2>
-
-  <div class="flashcard">
-    <p>Définition clé</p>
-    <div class="reponse">La translation déplace une figure sans la tourner ; la rotation tourne la figure autour d’un centre.</div>
-  </div>
-
-  <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">Une transformation conserve les longueurs et les angles.</div>
-  </div>
+  <div class="flashcard"><p>Définition clé</p><div class="reponse">Une translation déplace une figure selon une direction, un sens et une longueur.</div></div>
+  <div class="flashcard"><p>Méthode clé</p><div class="reponse">Ces transformations conservent longueurs, angles, alignements et aires.</div></div>
 </section>
 
 </main>
