@@ -226,17 +226,317 @@ function verifierQCM() {
 
   const total = questions.length;
   const result = document.getElementById("qcm-result");
-  if (result) result.textContent = `Votre score : ${score} / ${total}`;
+  if (result) {
+    const percent = total ? Math.round((score / total) * 100) : 0;
+    const detailedFeedback = score === total
+      ? "Parfait, chapitre validé à 100% !"
+      : score >= Math.ceil(total * 0.7)
+        ? "Très bien, encore un effort pour atteindre 100%."
+        : "Continue : relis le cours et utilise les indices progressifs.";
+    result.textContent = `Votre score : ${score} / ${total} (${percent}%). ${detailedFeedback}`;
+  }
 
   if (typeof enregistrerScore === "function") {
-    const chapterId = window.location.pathname.replace(/\//g, "-").replace(".html", "");
+    const chapterId = chapterKey();
     enregistrerScore(chapterId, score, total);
   }
+
+  awardPoints(score * 10, "QCM terminé");
+  if (score === total && total > 0) validateChapter(chapterKey(), result);
 }
 
 function toggleCorrection() {
   const correction = document.getElementById("correction");
   if (correction) correction.classList.toggle("hidden");
+}
+
+function chapterKey() {
+  return window.location.pathname.replace(/\//g, "-").replace(".html", "");
+}
+
+function getGlobalScore() {
+  return JSON.parse(localStorage.getItem("mathsMoiCaScore") || '{"points":0,"validated":[]}');
+}
+
+function setGlobalScore(data) {
+  localStorage.setItem("mathsMoiCaScore", JSON.stringify(data));
+}
+
+function renderScoreBoard() {
+  const main = document.querySelector("main");
+  if (!main) return;
+  const data = getGlobalScore();
+  let board = document.querySelector(".score-board");
+  if (!board) {
+    board = document.createElement("section");
+    board.className = "bloc score-board";
+    main.insertBefore(board, main.firstChild);
+  }
+  board.innerHTML = `<h2>🏆 Score</h2><p><strong>${data.points}</strong> points cumulés • <strong>${data.validated.length}</strong> chapitres validés à 100%</p>`;
+}
+
+function awardPoints(points, reason) {
+  const data = getGlobalScore();
+  data.points += points;
+  setGlobalScore(data);
+  renderScoreBoard();
+  const result = document.getElementById("qcm-result");
+  if (result && reason) result.textContent += ` (+${points} pts : ${reason})`;
+}
+
+function validateChapter(id, resultNode) {
+  const data = getGlobalScore();
+  if (data.validated.includes(id)) return;
+  data.validated.push(id);
+  data.points += 20;
+  setGlobalScore(data);
+  renderScoreBoard();
+  if (resultNode) resultNode.textContent += " + bonus validation : 20 pts";
+}
+
+
+function injectRoadmapUX() {
+  const main = document.querySelector("main");
+  if (!main) return;
+
+  const coursSection = document.querySelector("section.cours, section.bloc.cours");
+  if (coursSection && !document.querySelector(".chapter-objectives")) {
+    const title = sanitizeTitle(document.querySelector("header h1")?.textContent || "ce chapitre");
+    const objective = document.createElement("section");
+    objective.className = "bloc chapter-objectives";
+    objective.innerHTML = `
+      <h2>🎯 Objectifs du chapitre</h2>
+      <ul>
+        <li>Découvrir les notions essentielles de « ${title} ».</li>
+        <li>Comprendre les méthodes et éviter les erreurs fréquentes.</li>
+        <li>S'entraîner avec des exercices courts et un QCM interactif.</li>
+        <li>Valider les acquis avec correction immédiate.</li>
+      </ul>`;
+    main.insertBefore(objective, coursSection);
+  }
+
+  const steps = [
+    ["section.cours, section.bloc.cours", "🔎 Étape 1 — Découvrir & comprendre"],
+    ["section.exercices, section.bloc.exercices", "✍️ Étape 2 — S’entraîner"],
+    ["section.qcm, section.bloc.qcm", "✅ Étape 3 — Valider"],
+  ];
+
+  steps.forEach(([selector, text]) => {
+    const section = document.querySelector(selector);
+    if (!section || section.querySelector(".step-chip")) return;
+    const chip = document.createElement("p");
+    chip.className = "step-chip";
+    chip.textContent = text;
+    section.insertBefore(chip, section.firstChild);
+  });
+
+  const current = document.querySelector('.niveaux-menu .submenu a.current-page');
+  if (current && !document.querySelector('.chapter-nav')) {
+    const links = [...current.closest('.submenu').querySelectorAll('a')];
+    const i = links.indexOf(current);
+    const prev = links[i - 1];
+    const next = links[i + 1];
+
+    const nav = document.createElement('nav');
+    nav.className = 'chapter-nav';
+    nav.setAttribute('aria-label', 'Navigation entre chapitres');
+    nav.innerHTML = `${prev ? `<a class="btn" href="${prev.getAttribute('href')}">← Chapitre précédent</a>` : '<span></span>'}${next ? `<a class="btn" href="${next.getAttribute('href')}">Chapitre suivant →</a>` : '<span></span>'}`;
+    main.appendChild(nav);
+  }
+}
+
+function enableInstantQcmFeedback() {
+  document.querySelectorAll('.qcm .question, .bloc.qcm .question').forEach((question) => {
+    if (question.querySelector('.qcm-feedback')) return;
+    const feedback = document.createElement('p');
+    feedback.className = 'qcm-feedback';
+    feedback.setAttribute('aria-live', 'polite');
+    question.appendChild(feedback);
+
+    question.querySelectorAll('input[type="radio"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        const ok = input.dataset.correct === 'true';
+        question.classList.remove('is-good', 'is-bad');
+        question.classList.add(ok ? 'is-good' : 'is-bad');
+        feedback.textContent = ok ? '✅ Bonne réponse !' : '❌ Mauvaise réponse, essaie encore.';
+      });
+    });
+  });
+}
+
+function renderDifficultyExercises() {
+  const exos = document.querySelector("section.exercices, section.bloc.exercices");
+  if (!exos || exos.querySelector(".difficulty-grid")) return;
+  exos.insertAdjacentHTML("beforeend", `
+    <h3>🎚 Exercices par niveau</h3>
+    <div class="difficulty-grid">
+      <article class="difficulty-card"><h4>🟢 Facile</h4><p>Rappel direct de la notion clé.</p></article>
+      <article class="difficulty-card"><h4>🟠 Moyen</h4><p>Application guidée avec méthode.</p></article>
+      <article class="difficulty-card"><h4>🔴 Difficile</h4><p>Synthèse complète et justification.</p></article>
+    </div>
+  `);
+}
+
+function renderProgressiveHints() {
+  document.querySelectorAll(".qcm .question, .bloc.qcm .question").forEach((question) => {
+    if (question.querySelector(".hint-controls")) return;
+    const hints = [
+      "Indice 1 : relis la définition du cours.",
+      "Indice 2 : élimine les réponses manifestement fausses.",
+      "Indice 3 : vérifie les mots-clés mathématiques de la consigne.",
+    ];
+    let hintLevel = 0;
+    const wrap = document.createElement("div");
+    wrap.className = "hint-controls";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "btn";
+    button.textContent = "Voir un indice";
+    const text = document.createElement("p");
+    text.className = "hint-text";
+    button.addEventListener("click", () => {
+      text.textContent = hints[hintLevel] || "Tous les indices ont été révélés.";
+      hintLevel += 1;
+    });
+    wrap.append(button, text);
+    question.appendChild(wrap);
+  });
+}
+
+function renderFinalQuiz() {
+  const qcm = document.querySelector("section.qcm, section.bloc.qcm");
+  if (!qcm || qcm.querySelector(".final-quiz")) return;
+  qcm.insertAdjacentHTML("beforeend", `
+    <div class="final-quiz">
+      <h3>🏁 Quiz de fin de chapitre</h3>
+      <p>Auto-évaluation : as-tu validé ce chapitre ?</p>
+      <button class="btn" type="button" id="self-eval-btn">Je m'auto-évalue</button>
+      <p id="self-eval-result"></p>
+    </div>
+  `);
+  qcm.querySelector("#self-eval-btn")?.addEventListener("click", () => {
+    const validated = getGlobalScore().validated.includes(chapterKey());
+    const target = qcm.querySelector("#self-eval-result");
+    if (!target) return;
+    target.textContent = validated
+      ? "✅ Chapitre validé : 100% atteint au QCM."
+      : "💡 Pas encore validé : vise 100% au QCM pour débloquer le chapitre.";
+  });
+}
+
+function renderVisualLab() {
+  const cours = document.querySelector("section.cours, section.bloc.cours");
+  if (!cours || document.querySelector(".visual-lab")) return;
+
+  const visual = document.createElement("section");
+  visual.className = "bloc visual-lab";
+  visual.innerHTML = `
+    <h2>📊 Visualisation interactive</h2>
+    <p>Manipule les paramètres pour visualiser la fonction au lieu de mémoriser.</p>
+    <div class="function-controls">
+      <label for="coef-a">a :
+        <input id="coef-a" type="range" min="-5" max="5" step="1" value="1">
+      </label>
+      <label for="coef-b">b :
+        <input id="coef-b" type="range" min="-10" max="10" step="1" value="0">
+      </label>
+      <p id="function-equation"><strong>f(x) = 1x + 0</strong></p>
+    </div>
+    <canvas id="function-canvas" width="560" height="320" aria-label="Graphique de fonction affine"></canvas>
+    <div class="variation-box">
+      <h3>📈 Tableau de variation dynamique</h3>
+      <p id="variation-text">Fonction croissante sur ℝ (a > 0).</p>
+    </div>
+    <details class="geogebra-box">
+      <summary>Ouvrir l'activité GeoGebra</summary>
+      <iframe
+        title="GeoGebra - visualisation de fonction"
+        src="https://www.geogebra.org/classic?lang=fr"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        allowfullscreen
+      ></iframe>
+    </details>
+  `;
+
+  cours.insertAdjacentElement("afterend", visual);
+  initFunctionVisualizer();
+}
+
+function initFunctionVisualizer() {
+  const canvas = document.getElementById("function-canvas");
+  const inputA = document.getElementById("coef-a");
+  const inputB = document.getElementById("coef-b");
+  if (!canvas || !inputA || !inputB) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const equation = document.getElementById("function-equation");
+  const variation = document.getElementById("variation-text");
+
+  const draw = () => {
+    const a = Number(inputA.value);
+    const b = Number(inputB.value);
+    const width = canvas.width;
+    const height = canvas.height;
+    const unit = 24;
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.strokeStyle = "#dce6f7";
+    ctx.lineWidth = 1;
+    for (let x = 0; x <= width; x += unit) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+    for (let y = 0; y <= height; y += unit) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+
+    const ox = width / 2;
+    const oy = height / 2;
+    ctx.strokeStyle = "#526a87";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(0, oy);
+    ctx.lineTo(width, oy);
+    ctx.moveTo(ox, 0);
+    ctx.lineTo(ox, height);
+    ctx.stroke();
+
+    ctx.strokeStyle = "#1e6bd6";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for (let px = 0; px <= width; px += 2) {
+      const x = (px - ox) / unit;
+      const y = a * x + b;
+      const py = oy - y * unit;
+      if (px === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    if (equation) equation.innerHTML = `<strong>f(x) = ${a}x ${b >= 0 ? "+" : "-"} ${Math.abs(b)}</strong>`;
+    if (variation) {
+      variation.textContent = a > 0
+        ? "Fonction croissante sur ℝ (a > 0)."
+        : a < 0
+          ? "Fonction décroissante sur ℝ (a < 0)."
+          : "Fonction constante sur ℝ (a = 0).";
+    }
+  };
+
+  inputA.addEventListener("input", draw);
+  inputB.addEventListener("input", draw);
+  draw();
 }
 
 /* ===== Initialisation ===== */
@@ -247,6 +547,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (data) {
     renderCourse(data);
   }
+
+  injectRoadmapUX();
+  renderScoreBoard();
+  enableInstantQcmFeedback();
+  renderDifficultyExercises();
+  renderProgressiveHints();
+  renderFinalQuiz();
+  renderVisualLab();
 
   document.querySelectorAll(".flashcard").forEach((card) => {
     card.addEventListener("click", () => {
