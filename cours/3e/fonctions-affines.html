@@ -22,32 +22,30 @@
 <main>
 
 <section class="bloc cours">
-  <div class="definition">
-    Une fonction affine est de la forme $f(x)=ax+b$.
-  </div>
-
-  <div class="propriete">
-    Le coefficient a donne la pente de la droite représentative.
-  </div>
-
-  <div class="exemple">
-    $f(x)=2x-3$ est une fonction affine.
-  </div>
+  <h2>📘 Cours</h2>
+  <div class="definition"> Une fonction affine est de la forme f(x)=ax+b.</div>
+  <div class="propriete"> Le coefficient a est la pente (variation) et b est l’ordonnée à l’origine.</div>
+  <div class="propriete"> Si a>0 la fonction est croissante ; si a<0 elle est décroissante.</div>
+  <div class="exemple"> Exemple : f(x)=2x-3, alors f(4)=5 et la droite coupe l’axe des ordonnées en -3.</div>
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+  <h2>✏️ Exercices d'entraînement</h2>
   <ol>
-    <li>Écrire un exemple lié au chapitre « Fonctions affines ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
+    <li>Pour f(x)=3x-2, calculer f(5).</li>
+    <li>Donner le coefficient directeur et l’ordonnée à l’origine de g(x)=-4x+1.</li>
+    <li>La fonction h(x)=0,5x+7 est-elle croissante ?</li>
+    <li>Déterminer l’expression affine de la droite passant par (0;2) et (3;8).</li>
   </ol>
 
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
 
   <div id="correction" class="correction hidden">
     <ol>
-      <li>Réponse possible : $f(x)=2x-3$ est une fonction affine.</li>
-      <li>Utiliser la propriété : Le coefficient a donne la pente de la droite représentative.</li>
+    <li>f(5)=15-2=13.</li>
+    <li>a=-4 et b=1.</li>
+    <li>Oui car a=0,5>0.</li>
+    <li>a=(8-2)/3=2 donc y=2x+2.</li>
     </ol>
   </div>
 </section>
@@ -56,20 +54,18 @@
   <h2>📝 QCM – Fonctions affines</h2>
 
   <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 3ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
+    <p>1️⃣ Quelle affirmation est correcte ?</p>
+    <label><input type="radio" name="q1" data-correct="true">Le coefficient a est la pente (variation) et b est l’ordonnée à l’origine.</label><br>
+    <label><input type="radio" name="q1"> Toutes les réponses sont fausses.</label>
   </div>
 
   <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> Le coefficient a donne la pente de la droite représentative.</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+    <p>2️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 3ème</label><br>
+    <label><input type="radio" name="q2"> 4ème</label>
   </div>
 
-  <button class="btn" onclick="verifierQCM('3e-fonctions-affines')">
-    Vérifier mes réponses
-  </button>
+  <button class="btn" onclick="verifierQCM('3e-fonctions-affines')">Vérifier mes réponses</button>
 
   <p id="qcm-result"></p>
 </section>
@@ -79,12 +75,12 @@
 
   <div class="flashcard">
     <p>Définition clé</p>
-    <div class="reponse">Une fonction affine est de la forme $f(x)=ax+b$.</div>
+    <div class="reponse"> Une fonction affine est de la forme f(x)=ax+b.</div>
   </div>
 
   <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">Le coefficient a donne la pente de la droite représentative.</div>
+    <p>Méthode à retenir</p>
+    <div class="reponse"> Si a>0 la fonction est croissante ; si a<0 elle est décroissante.</div>
   </div>
 </section>
 

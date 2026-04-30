@@ -22,32 +22,30 @@
 <main>
 
 <section class="bloc cours">
-  <div class="definition">
-    Un système d’équations cherche des valeurs qui vérifient plusieurs équations.
-  </div>
-
-  <div class="propriete">
-    La solution est le couple qui vérifie les deux équations.
-  </div>
-
-  <div class="exemple">
-    $x+y=5$ et $x-y=1$ donnent $x=3$ et $y=2$.
-  </div>
+  <h2>📘 Cours</h2>
+  <div class="definition"> Un système de deux équations à deux inconnues cherche un couple (x ; y) solution commune.</div>
+  <div class="propriete"> Méthode par addition : on additionne/soustrait les équations pour éliminer une inconnue.</div>
+  <div class="propriete"> Méthode par substitution : on exprime une inconnue puis on remplace dans l’autre équation.</div>
+  <div class="exemple"> Exemple : x+y=11 et x-y=3 donnent x=7 et y=4.</div>
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+  <h2>✏️ Exercices d'entraînement</h2>
   <ol>
-    <li>Écrire un exemple lié au chapitre « Systèmes d’équations ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
+    <li>Résoudre : x+y=9 et x-y=1.</li>
+    <li>Résoudre : 2x+y=11 et x-y=1.</li>
+    <li>Vérifier si (3;2) est solution de x+2y=7 et 2x-y=4.</li>
+    <li>Dans un cinéma, 2 places adulte + 1 enfant coûtent 23€, et 1 adulte + 2 enfants coûtent 19€. Prix d’une place adulte et enfant ?</li>
   </ol>
 
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
 
   <div id="correction" class="correction hidden">
     <ol>
-      <li>Réponse possible : $x+y=5$ et $x-y=1$ donnent $x=3$ et $y=2$.</li>
-      <li>Utiliser la propriété : La solution est le couple qui vérifie les deux équations.</li>
+    <li>En additionnant : 2x=10 donc x=5 ; y=4.</li>
+    <li>Par substitution : y=x-1 puis 2x+x-1=11 donc x=4 et y=3.</li>
+    <li>Oui : 3+4=7 et 6-2=4.</li>
+    <li>Système 2A+E=23 ; A+2E=19 → A=9€, E=5€.</li>
     </ol>
   </div>
 </section>
@@ -56,20 +54,18 @@
   <h2>📝 QCM – Systèmes d’équations</h2>
 
   <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 3ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
+    <p>1️⃣ Quelle affirmation est correcte ?</p>
+    <label><input type="radio" name="q1" data-correct="true">Méthode par addition : on additionne/soustrait les équations pour éliminer une inconnue.</label><br>
+    <label><input type="radio" name="q1"> Toutes les réponses sont fausses.</label>
   </div>
 
   <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> La solution est le couple qui vérifie les deux équations.</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+    <p>2️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 3ème</label><br>
+    <label><input type="radio" name="q2"> 4ème</label>
   </div>
 
-  <button class="btn" onclick="verifierQCM('3e-systemes-equations')">
-    Vérifier mes réponses
-  </button>
+  <button class="btn" onclick="verifierQCM('3e-systemes-equations')">Vérifier mes réponses</button>
 
   <p id="qcm-result"></p>
 </section>
@@ -79,12 +75,12 @@
 
   <div class="flashcard">
     <p>Définition clé</p>
-    <div class="reponse">Un système d’équations cherche des valeurs qui vérifient plusieurs équations.</div>
+    <div class="reponse"> Un système de deux équations à deux inconnues cherche un couple (x ; y) solution commune.</div>
   </div>
 
   <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">La solution est le couple qui vérifie les deux équations.</div>
+    <p>Méthode à retenir</p>
+    <div class="reponse"> Méthode par substitution : on exprime une inconnue puis on remplace dans l’autre équation.</div>
   </div>
 </section>
 
