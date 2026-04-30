@@ -650,6 +650,45 @@ footer {
   margin-top: 16px;
 }
 
+.score-board p {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.difficulty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.difficulty-card {
+  background: #f8fbff;
+  border: 1px solid #d9e6ff;
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+}
+
+.difficulty-card h4 {
+  margin: 0 0 6px;
+}
+
+.hint-controls {
+  margin-top: 10px;
+}
+
+.hint-text {
+  margin: 8px 0 0;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+.final-quiz {
+  margin-top: 16px;
+  border-top: 1px dashed #c9d8f6;
+  padding-top: 14px;
+}
+
 @media (max-width: 640px) {
   section, .bloc { padding: 14px; }
   .chapter-nav .btn { width: 100%; }
