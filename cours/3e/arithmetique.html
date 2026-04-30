@@ -22,32 +22,30 @@
 <main>
 
 <section class="bloc cours">
-  <div class="definition">
-    L’arithmétique étudie divisibilité, nombres premiers et PGCD.
-  </div>
-
-  <div class="propriete">
-    Un nombre premier admet exactement deux diviseurs.
-  </div>
-
-  <div class="exemple">
-    13 est un nombre premier.
-  </div>
+  <h2>📘 Cours</h2>
+  <div class="definition"> L’arithmétique étudie la divisibilité, les nombres premiers et le PGCD.</div>
+  <div class="propriete"> Un nombre premier possède exactement deux diviseurs : 1 et lui-même.</div>
+  <div class="propriete"> Décomposition en facteurs premiers : on écrit un nombre comme produit de nombres premiers.</div>
+  <div class="exemple"> Exemple : 84 = 2² × 3 × 7 ; PGCD(84, 126) = 42.</div>
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+  <h2>✏️ Exercices d'entraînement</h2>
   <ol>
-    <li>Écrire un exemple lié au chapitre « Arithmétique ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
+    <li>Décomposer 90 en facteurs premiers.</li>
+    <li>Dire si 97 est un nombre premier.</li>
+    <li>Calculer le PGCD de 54 et 72.</li>
+    <li>Rendre irréductible la fraction 54/72.</li>
   </ol>
 
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
 
   <div id="correction" class="correction hidden">
     <ol>
-      <li>Réponse possible : 13 est un nombre premier.</li>
-      <li>Utiliser la propriété : Un nombre premier admet exactement deux diviseurs.</li>
+    <li>90 = 2 × 3² × 5.</li>
+    <li>Oui, 97 est premier (pas divisible par 2,3,5,7).</li>
+    <li>PGCD(54,72)=18.</li>
+    <li>54/72 = 3/4 en divisant par 18.</li>
     </ol>
   </div>
 </section>
@@ -56,20 +54,18 @@
   <h2>📝 QCM – Arithmétique</h2>
 
   <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 3ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
+    <p>1️⃣ Quelle affirmation est correcte ?</p>
+    <label><input type="radio" name="q1" data-correct="true">Un nombre premier possède exactement deux diviseurs : 1 et lui-même.</label><br>
+    <label><input type="radio" name="q1"> Toutes les réponses sont fausses.</label>
   </div>
 
   <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> Un nombre premier admet exactement deux diviseurs.</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+    <p>2️⃣ Ce chapitre appartient au niveau :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 3ème</label><br>
+    <label><input type="radio" name="q2"> 4ème</label>
   </div>
 
-  <button class="btn" onclick="verifierQCM('3e-arithmetique')">
-    Vérifier mes réponses
-  </button>
+  <button class="btn" onclick="verifierQCM('3e-arithmetique')">Vérifier mes réponses</button>
 
   <p id="qcm-result"></p>
 </section>
@@ -79,12 +75,12 @@
 
   <div class="flashcard">
     <p>Définition clé</p>
-    <div class="reponse">L’arithmétique étudie divisibilité, nombres premiers et PGCD.</div>
+    <div class="reponse"> L’arithmétique étudie la divisibilité, les nombres premiers et le PGCD.</div>
   </div>
 
   <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">Un nombre premier admet exactement deux diviseurs.</div>
+    <p>Méthode à retenir</p>
+    <div class="reponse"> Décomposition en facteurs premiers : on écrit un nombre comme produit de nombres premiers.</div>
   </div>
 </section>
 

@@ -22,70 +22,52 @@
 <main>
 
 <section class="bloc cours">
-  <div class="definition">
-    Dans un triangle rectangle, le carré de l’hypoténuse est égal à la somme des carrés des deux autres côtés.
-  </div>
-
-  <div class="propriete">
-    Si ABC est rectangle en A : $BC^2 = AB^2$ + AC².
-  </div>
-
-  <div class="exemple">
-    3² + $4^2 = 5^2$.
-  </div>
+  <h2>📘 Cours</h2>
+  <div class="definition">Dans un triangle rectangle, le carré de l’hypoténuse est égal à la somme des carrés des deux autres côtés.</div>
+  <div class="propriete">Si ABC est rectangle en A, alors BC² = AB² + AC².</div>
+  <div class="propriete">On peut aussi vérifier qu’un triangle est rectangle avec la réciproque du théorème.</div>
+  <div class="exemple">Exemple : 6² + 8² = 36 + 64 = 100 = 10².</div>
 </section>
 
 <section class="bloc exercices">
-  <h2>✏️ Exercices</h2>
+  <h2>✏️ Exercices d'entraînement</h2>
   <ol>
-    <li>Écrire un exemple lié au chapitre « Théorème de Pythagore ».</li>
-    <li>Résoudre un exercice simple de ce chapitre.</li>
+    <li>Dans un triangle rectangle, AB=6 cm et AC=8 cm. Calculer BC.</li>
+    <li>Un triangle a pour côtés 5 cm, 12 cm et 13 cm. Est-il rectangle ?</li>
+    <li>Dans un triangle rectangle, BC=15 cm et AB=9 cm. Calculer AC.</li>
+    <li>Un écran mesure 48 cm sur 36 cm. Quelle est sa diagonale ?</li>
   </ol>
-
   <button class="btn" onclick="toggleCorrection()">Voir / cacher le corrigé</button>
-
   <div id="correction" class="correction hidden">
     <ol>
-      <li>Réponse possible : 3² + $4^2 = 5^2$.</li>
-      <li>Utiliser la propriété : Si ABC est rectangle en A : $BC^2 = AB^2$ + AC².</li>
+    <li>BC²=36+64=100 donc BC=10 cm.</li>
+    <li>Oui, car 5²+12²=25+144=169=13².</li>
+    <li>AC²=15²-9²=225-81=144 donc AC=12 cm.</li>
+    <li>d²=48²+36²=2304+1296=3600 donc d=60 cm.</li>
     </ol>
   </div>
 </section>
 
 <section class="bloc qcm">
   <h2>📝 QCM – Théorème de Pythagore</h2>
-
   <div class="question">
-    <p>1️⃣ Ce chapitre appartient au niveau :</p>
-    <label><input type="radio" name="q1" data-correct="true"> 4ème</label><br>
-    <label><input type="radio" name="q1"> 6ème</label>
+    <p>1️⃣ Quelle affirmation est correcte ?</p>
+    <label><input type="radio" name="q1" data-correct="true"> Si ABC est rectangle en A, alors BC² = AB² + AC².</label><br>
+    <label><input type="radio" name="q1"> Toutes les réponses sont fausses.</label>
   </div>
-
   <div class="question">
-    <p>2️⃣ La bonne affirmation est :</p>
-    <label><input type="radio" name="q2" data-correct="true"> Si ABC est rectangle en A : $BC^2 = AB^2$ + AC².</label><br>
-    <label><input type="radio" name="q2"> Toutes les réponses sont fausses.</label>
+    <p>2️⃣ Ce chapitre est au niveau :</p>
+    <label><input type="radio" name="q2" data-correct="true"> 4ème</label><br>
+    <label><input type="radio" name="q2"> 5ème</label>
   </div>
-
-  <button class="btn" onclick="verifierQCM('4e-pythagore')">
-    Vérifier mes réponses
-  </button>
-
+  <button class="btn" onclick="verifierQCM('4e-pythagore')">Vérifier mes réponses</button>
   <p id="qcm-result"></p>
 </section>
 
 <section class="bloc flashcards">
   <h2>🗂 Flashcards – Théorème de Pythagore</h2>
-
-  <div class="flashcard">
-    <p>Définition clé</p>
-    <div class="reponse">Dans un triangle rectangle, le carré de l’hypoténuse est égal à la somme des carrés des deux autres côtés.</div>
-  </div>
-
-  <div class="flashcard">
-    <p>Propriété à retenir</p>
-    <div class="reponse">Si ABC est rectangle en A : $BC^2 = AB^2$ + AC².</div>
-  </div>
+  <div class="flashcard"><p>Définition clé</p><div class="reponse">Dans un triangle rectangle, le carré de l’hypoténuse est égal à la somme des carrés des deux autres côtés.</div></div>
+  <div class="flashcard"><p>Méthode clé</p><div class="reponse">On peut aussi vérifier qu’un triangle est rectangle avec la réciproque du théorème.</div></div>
 </section>
 
 </main>
