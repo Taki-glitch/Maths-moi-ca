@@ -304,6 +304,31 @@ function setLearningProfile(profile) {
 }
 
 
+
+function getSmartErrorExplanation(question) {
+  const rule = topicRuleFromPage();
+  const correctLabel = [...question.querySelectorAll('label')].find((label) => label.querySelector('[data-correct="true"]'));
+  const correctText = correctLabel ? correctLabel.textContent.trim().replace(/\s+/g, " ") : "la réponse correcte";
+  const trap = rule.traps[0] || "relis les conditions d'utilisation de la propriété.";
+  return `Correction intelligente : la bonne piste est « ${correctText} ». Erreur fréquente à vérifier : ${trap}`;
+}
+
+function getAdaptiveAdvice() {
+  const profile = getLearningProfile();
+  const last = profile.history.at(-1);
+  if (!last) return "Commence par le niveau facile, puis fais le QCM pour obtenir une première recommandation.";
+  const percent = last.total ? Math.round((last.score / last.total) * 100) : 0;
+  if (percent === 100) return "Chapitre maîtrisé : passe au chapitre suivant ou lance un sujet de synthèse.";
+  if (percent >= 70) return "Tu es proche de la validation : refais les questions ratées avec les indices, puis vise 100%.";
+  if (percent >= 40) return "Consolide : relis la méthode type, fais deux exercices faciles, puis un exercice moyen.";
+  return "Priorité remédiation : revois la définition, demande une explication au chatbot et recommence sans limite de temps.";
+}
+
+function updateAdaptivePath() {
+  const target = document.getElementById("adaptive-text");
+  if (target) target.textContent = getAdaptiveAdvice();
+}
+
 function injectRoadmapUX() {
   const main = document.querySelector("main");
   if (!main) return;
@@ -367,7 +392,7 @@ function enableInstantQcmFeedback() {
         const ok = input.dataset.correct === 'true';
         question.classList.remove('is-good', 'is-bad');
         question.classList.add(ok ? 'is-good' : 'is-bad');
-        feedback.textContent = ok ? '✅ Bonne réponse !' : '❌ Mauvaise réponse, essaie encore.';
+        feedback.textContent = ok ? '✅ Bonne réponse !' : `❌ Mauvaise réponse. ${getSmartErrorExplanation(question)}`;
       });
     });
   });
@@ -600,6 +625,7 @@ function saveExerciseHistory(score, total) {
   setLearningProfile(profile);
   updateResumeInfo();
   renderExerciseHistory();
+  updateAdaptivePath();
 }
 
 function renderPersonalizationPanel() {
@@ -620,6 +646,7 @@ function renderPersonalizationPanel() {
     <div class="guided-path"><h3>Parcours guidé</h3><ol>${buildGuidedPath(chapter).map((step) => `<li>${step}</li>`).join("")}</ol></div>
     <div class="resume-box"><p id="resume-text"></p><button type="button" class="btn" id="resume-btn">Reprise automatique</button></div>
     <div class="recommendation-box"><h3>Recommandation simple</h3><p id="recommendation-text"></p></div>
+    <div class="adaptive-box"><h3>Parcours adaptatif</h3><p id="adaptive-text"></p></div>
     <div class="history-box"><h3>Historique des exercices</h3><ul id="history-list"></ul></div>
   `;
   main.insertBefore(panel, main.firstChild);
@@ -642,6 +669,7 @@ function renderPersonalizationPanel() {
 
   updateResumeInfo();
   updateRecommendation();
+  updateAdaptivePath();
   renderExerciseHistory();
 }
 
@@ -654,7 +682,72 @@ function buildRandomExercise() {
   const b = randomInt(-9, 9);
   const op = ["+", "-", "×"][randomInt(0, 2)];
   const result = op === "+" ? a + b : op === "-" ? a - b : a * b;
-  return { statement: `Calculer : ${a} ${op} ${b}`, answer: result };
+  const explanation = op === "+"
+    ? `On additionne ${a} et ${b}.`
+    : op === "-"
+      ? `On soustrait ${b} à ${a}. Attention au signe du second nombre.`
+      : `On multiplie ${a} par ${b}. Le signe dépend des deux facteurs.`;
+  return { statement: `Calculer : ${a} ${op} ${b}`, answer: result, explanation };
+}
+
+
+function safeCalculateExpression(expression) {
+  const input = expression.replace(/,/g, ".").replace(/\s+/g, "");
+  if (!/^[\d+\-*/().]+$/.test(input)) throw new Error("Expression non autorisée");
+
+  let index = 0;
+  const peek = () => input[index];
+  const consume = () => input[index++];
+
+  const parseNumber = () => {
+    let value = "";
+    while (/\d|\./.test(peek() || "")) value += consume();
+    if (!value || value === ".") throw new Error("Nombre invalide");
+    return Number(value);
+  };
+
+  const parseFactor = () => {
+    if (peek() === "+") {
+      consume();
+      return parseFactor();
+    }
+    if (peek() === "-") {
+      consume();
+      return -parseFactor();
+    }
+    if (peek() === "(") {
+      consume();
+      const value = parseExpression();
+      if (peek() !== ")") throw new Error("Parenthèse manquante");
+      consume();
+      return value;
+    }
+    return parseNumber();
+  };
+
+  const parseTerm = () => {
+    let value = parseFactor();
+    while (peek() === "*" || peek() === "/") {
+      const op = consume();
+      const right = parseFactor();
+      value = op === "*" ? value * right : value / right;
+    }
+    return value;
+  };
+
+  const parseExpression = () => {
+    let value = parseTerm();
+    while (peek() === "+" || peek() === "-") {
+      const op = consume();
+      const right = parseTerm();
+      value = op === "+" ? value + right : value - right;
+    }
+    return value;
+  };
+
+  const result = parseExpression();
+  if (index !== input.length || !Number.isFinite(result)) throw new Error("Expression invalide");
+  return Number.isInteger(result) ? result : Number(result.toFixed(6));
 }
 
 function renderPowerTools() {
@@ -720,7 +813,7 @@ function initPowerTools() {
   document.getElementById("check-exo-btn")?.addEventListener("click", () => {
     const value = Number(answer?.value);
     const ok = value === currentExercise.answer;
-    if (feedback) feedback.textContent = ok ? "✅ Correct !" : `❌ Faux. Réponse: ${currentExercise.answer}`;
+    if (feedback) feedback.textContent = ok ? "✅ Correct !" : `❌ Faux. Réponse: ${currentExercise.answer}. ${currentExercise.explanation}`;
     if (ok && unlimited) refreshExercise();
   });
   refreshExercise();
@@ -736,7 +829,7 @@ function initPowerTools() {
     const out = document.getElementById("calc-result");
     if (!input || !out) return;
     try {
-      const value = Function(`"use strict"; return (${input.value})`)();
+      const value = safeCalculateExpression(input.value);
       out.textContent = `Résultat : ${value}`;
     } catch {
       out.textContent = "Expression invalide.";
@@ -769,6 +862,76 @@ function initPowerTools() {
   });
 }
 
+
+function renderAIAssistant() {
+  if (document.querySelector(".chapitre-chatbot")) return;
+  const bot = document.createElement("aside");
+  bot.className = "chapitre-chatbot";
+  bot.innerHTML = `
+    <button class="chatbot-toggle" type="button" aria-expanded="false">🤖 Assistant IA</button>
+    <div class="chatbot-panel hidden" role="dialog" aria-label="Assistant pédagogique local">
+      <h3>Assistant pédagogique</h3>
+      <p class="chatbot-hint">Pose une question : indice, erreur, correction, parcours...</p>
+      <div class="chatbot-log" aria-live="polite"></div>
+      <form class="chatbot-form">
+        <label class="sr-only" for="chatbot-input">Question</label>
+        <input id="chatbot-input" type="text" placeholder="Ex : explique mon erreur">
+        <button class="btn" type="submit">Envoyer</button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(bot);
+
+  const toggle = bot.querySelector(".chatbot-toggle");
+  const panel = bot.querySelector(".chatbot-panel");
+  const form = bot.querySelector(".chatbot-form");
+  const input = bot.querySelector("#chatbot-input");
+  const log = bot.querySelector(".chatbot-log");
+
+  const addMessage = (text, type = "bot") => {
+    const msg = document.createElement("p");
+    msg.className = `chatbot-message ${type}`;
+    msg.textContent = text;
+    log.appendChild(msg);
+    log.scrollTop = log.scrollHeight;
+  };
+
+  toggle.addEventListener("click", () => {
+    panel.classList.toggle("hidden");
+    const expanded = !panel.classList.contains("hidden");
+    toggle.setAttribute("aria-expanded", String(expanded));
+    if (expanded && !log.children.length) addMessage(generatePedagogicalReply("bonjour"));
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+    addMessage(question, "user");
+    addMessage(generatePedagogicalReply(question));
+    input.value = "";
+  });
+}
+
+function generatePedagogicalReply(message) {
+  const normalized = message.toLowerCase();
+  const rule = topicRuleFromPage();
+  const title = sanitizeTitle(document.querySelector("header h1")?.textContent || "ce chapitre");
+  if (normalized.includes("erreur") || normalized.includes("faux")) {
+    return `Explication automatique : commence par vérifier cette erreur fréquente — ${rule.traps[0]}. Ensuite, refais la question en justifiant chaque étape.`;
+  }
+  if (normalized.includes("indice") || normalized.includes("aide")) {
+    return `Indice différencié : ${rule.methods[0]} Si tu bloques encore, utilise l'indice progressif sous la question.`;
+  }
+  if (normalized.includes("corrige") || normalized.includes("correction")) {
+    return `Correction intelligente : je ne donne pas seulement la réponse. Méthode : ${rule.methods.join(" → ")}`;
+  }
+  if (normalized.includes("parcours") || normalized.includes("suite") || normalized.includes("quoi faire")) {
+    return `Parcours adaptatif pour « ${title} » : ${getAdaptiveAdvice()}`;
+  }
+  return `Bonjour ! Je peux t'aider sur « ${title} ». Demande un indice, une explication d'erreur, une correction guidée ou ton parcours adaptatif.`;
+}
+
 /* ===== Initialisation ===== */
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.location.pathname.includes("/cours/")) return;
@@ -787,6 +950,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderVisualLab();
   renderPersonalizationPanel();
   renderPowerTools();
+  renderAIAssistant();
 
   document.querySelectorAll(".flashcard").forEach((card) => {
     card.addEventListener("click", () => {
